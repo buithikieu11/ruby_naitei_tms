@@ -1,5 +1,6 @@
 class Subject < ApplicationRecord
   enum status: {pending: 0, started: 1, finished: 2}
+
   VALID_NAME_REGEX = /\A[a-zA-Z0-9 ]+\z/i.freeze
 
   validates :name, presence: true,

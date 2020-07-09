@@ -1,4 +1,14 @@
+
 app:
 controller:
-model:
 view:
+model:
+  user:
+    username:
+      max_length: 30
+      min_length: 6
+    email:
+      max_length: 50
+    phone_number:
+      max_length: 15
+      min_length: 10
