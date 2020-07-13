@@ -12,6 +12,7 @@ gem "rails", "~> 6.0.3", ">= 6.0.3.2"
 gem "rails-i18n"
 gem "sass-rails", ">= 6"
 gem "turbolinks", "~> 5"
+
 gem "webpacker", "~> 4.0"
 gem "jbuilder", "~> 2.7"
 gem "bootsnap", ">= 1.4.2", require: false
