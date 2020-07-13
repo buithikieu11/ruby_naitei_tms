@@ -9,8 +9,7 @@ class Task < ApplicationRecord
                    numericality: {greater_than: Settings.model.task.step.greater_than}
   validates :status, presence: true,
                      numericality: true,
-                     inclusion: { in: statuses.keys }
+                     inclusion: {in: statuses.keys}
   validates :duration, presence: true,
                        numericality: {greater_than: Settings.model.task.duration.greater_than}
-
 end
