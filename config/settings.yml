@@ -1,4 +1,3 @@
-
 app:
 controller:
 model:
@@ -14,5 +13,9 @@ model:
   course:
     name:
       max_length: 50
-view:      
-
+  task:
+    step:
+      greater_than: 0
+    duration:
+      greater_than: 0
+view:
