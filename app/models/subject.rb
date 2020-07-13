@@ -4,8 +4,8 @@ class Subject < ApplicationRecord
   VALID_NAME_REGEX = /\A[a-zA-Z0-9 ]+\z/i.freeze
 
   validates :name, presence: true,
-                   format: { with: VALID_NAME_REGEX }
+                   format: {with: VALID_NAME_REGEX}
   validates :status, presence: true,
                      numericality: true,
-                     inclusion: { in: statuses.keys }
+                     inclusion: {in: statuses.keys}
 end
