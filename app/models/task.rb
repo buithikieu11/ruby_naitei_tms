@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :subject
+  has_many :user_tasks, dependent: :destroy
+
   enum status: {pending: 0, started: 1, finished: 2}
   VALID_NAME_REGEX = /\A[a-zA-Z0-9 ]+\z/i.freeze
 
