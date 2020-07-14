@@ -1,6 +1,13 @@
 class User < ApplicationRecord
   enum role: {trainee: 0, supervisor: 1}
 
+  has_many :course_users, dependent: :destroy
+  has_many :courses, through: :course_users
+  has_many :user_tasks, dependent: :destroy
+  has_many :tasks, through: :user_tasks
+  has_many :user_subjects, dependent: :destroy
+  has_many :subjects, through: :user_subjects
+
   MODEL_SETTINGS = Settings.model.user
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   VALID_PHONE_NUMBER_REGEX = /\A\+?[0-9]+\z/.freeze

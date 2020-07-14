@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_021105) do
+ActiveRecord::Schema.define(version: 2020_07_14_020131) do
 
   create_table "course_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "subject_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "course_id", null: false
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["subject_id", "user_id"], name: "index_course_subjects_on_subject_id_and_user_id", unique: true
+    t.index ["course_id"], name: "index_course_subjects_on_course_id"
+    t.index ["subject_id", "course_id"], name: "index_course_subjects_on_subject_id_and_course_id", unique: true
     t.index ["subject_id"], name: "index_course_subjects_on_subject_id"
-    t.index ["user_id"], name: "index_course_subjects_on_user_id"
   end
 
   create_table "course_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -66,6 +66,16 @@ ActiveRecord::Schema.define(version: 2020_07_10_021105) do
     t.index ["subject_id"], name: "index_tasks_on_subject_id"
   end
 
+  create_table "user_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "subject_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_id"], name: "index_user_subjects_on_subject_id"
+    t.index ["user_id"], name: "index_user_subjects_on_user_id"
+  end
+
   create_table "user_tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "task_id", null: false
@@ -91,11 +101,13 @@ ActiveRecord::Schema.define(version: 2020_07_10_021105) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "course_subjects", "courses"
   add_foreign_key "course_subjects", "subjects"
-  add_foreign_key "course_subjects", "users"
   add_foreign_key "course_users", "courses"
   add_foreign_key "course_users", "users"
   add_foreign_key "tasks", "subjects"
+  add_foreign_key "user_subjects", "subjects"
+  add_foreign_key "user_subjects", "users"
   add_foreign_key "user_tasks", "tasks"
   add_foreign_key "user_tasks", "users"
 end
