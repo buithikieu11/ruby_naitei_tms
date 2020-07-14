@@ -16,7 +16,7 @@ class User < ApplicationRecord
   VALID_PHONE_NUMBER_REGEX = /\A\+?[0-9]+\z/.freeze
   VALID_USERNAME_REGEX = /\A[a-zA-Z0-9\._]+\z/.freeze
 
-  validates :role, numericality: true, inclusion: {in: roles}
+  validates :role, presence: true, inclusion: {in: roles.keys}
   validates :username, presence: true,
                        uniqueness: {case_sensitive: false},
                        length: {minimum: MODEL_SETTINGS.username.min_length,
@@ -29,7 +29,7 @@ class User < ApplicationRecord
                     format: {with: VALID_EMAIL_REGEX}
   validates :phone_number, length: {minimum: MODEL_SETTINGS.phone_number.min_length,
                                     maximum: MODEL_SETTINGS.phone_number.max_length},
-                           format: {with: VALID_PHONE_NUMBER_REGEX}
+                           format: {with: VALID_PHONE_NUMBER_REGEX},allow_blank: true
 
   has_secure_password
 

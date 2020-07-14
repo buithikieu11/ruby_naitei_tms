@@ -14,7 +14,7 @@
           <%= form_for(:session, url: login_path) do |f| %>            
             <div class="text-center pb-8">
               <h2 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg"><%= t("view.session.new.sign_in") %></h2>
-              <span class="text-muted font-weight-bold font-size-h4">Or <a href="" class="text-primary font-weight-bolder" id="kt_login_signup"><%= t("view.session.new.create_an_account") %></a></span>
+              <span class="text-muted font-weight-bold font-size-h4">Or  <%= link_to t("view.session.new.create_an_account"),signup_path,class:"text-primary font-weight-bolder" %>
 
               <% flash.each do |type, msg| %>
                 <div class="alert alert-custom alert-light-danger fade show mb-5" role="alert">

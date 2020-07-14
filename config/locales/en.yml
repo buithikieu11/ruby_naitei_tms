@@ -10,6 +10,8 @@ en:
     admin:
       application:
         access_denied: "You are not permit to access this page!"
+    user:
+      create: "create user successfully"    
   model:
   view:
     session:
@@ -23,6 +25,25 @@ en:
         login: "Login"
         slogan1: "Sun Asterisk"
         slogan2: "Do awesome things that matter"
+    user:
+       new:
+         signup_title: "Sign Up"  
+         signup_account: "Signup Account"  
+         activate_account: "After signup go to mail to activate your account"
+         success: "Signup successfully"
+         welcome: "Welcome to you participate in trainning management system"
+         already_have_account: "Already have an Account ?"
+         username: "Username"
+         phone: "Phone"
+         password: "Password"
+         email: "Email"
+         login: "Sign in now!"
+         password_confirmation: "Password_confirmation"
+         submit: "Submit"   
+
+
+
+
 
         
 
