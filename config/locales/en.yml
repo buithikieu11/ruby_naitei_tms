@@ -1,10 +1,15 @@
 en:
   app:
     base_title: "Training Management System"
+    admin:
+      base_title: "Training Management System - Administration"
   controller:
     session:
       create:
         invalid_login_warning: "Invalid email/password combination"
+    admin:
+      application:
+        access_denied: "You are not permit to access this page!"
   model:
   view:
     session:
