@@ -5,6 +5,7 @@ ruby "2.7.1"
 gem "bcrypt"
 gem "bootsnap", ">= 1.4.2", require: false
 gem "config"
+gem "faker"
 gem "jbuilder", "~> 2.7"
 gem "jquery-rails"
 gem "mysql2", ">= 0.4.4"

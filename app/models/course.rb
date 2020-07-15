@@ -5,7 +5,7 @@ class Course < ApplicationRecord
   has_many :users, through: :course_users
   has_many :course_subjects, dependent: :destroy
   has_many :subjects, through: :course_subjects
-  
+
   validates :name, uniqueness: {case_sensitive: false},
                    presence: true,
                    length: {maximum: Settings.model.course.name.max_length},

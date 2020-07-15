@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   VALID_PHONE_NUMBER_REGEX = /\A\+?[0-9]+\z/.freeze
-  VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/.freeze
+  VALID_USERNAME_REGEX = /\A[a-zA-Z0-9\._]+\z/.freeze
 
   validates :role, numericality: true, inclusion: {in: roles}
   validates :username, presence: true,
