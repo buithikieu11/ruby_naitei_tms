@@ -1,5 +1,9 @@
 app:
 controller:
+  admin:
+    subject:
+      default_per_page: 10
+      default_page: 1
 model:
   user:
     username:

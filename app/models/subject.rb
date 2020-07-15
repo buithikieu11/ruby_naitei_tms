@@ -14,4 +14,6 @@ class Subject < ApplicationRecord
   validates :status, presence: true,
                      numericality: true,
                      inclusion: {in: statuses.keys}
+
+  scope :find_by_name, ->(name){where("name LIKE ?", "%#{name}%")}
 end

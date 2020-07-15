@@ -1,0 +1,158 @@
+<% provide :title, t("view.admin.subject.index.page_title") %>
+<% content_for :head_content do %>
+  <link href="<%= root_url %>assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+<% end %>
+
+<!--begin::Subheader-->
+<div class="subheader py-3 py-lg-8 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <!--begin::Info-->
+    <div class="d-flex align-items-center flex-wrap mr-1">
+      <!--begin::Page Heading-->
+      <div class="d-flex align-items-baseline flex-wrap mr-5">
+        <!--begin::Page Title-->
+        <h2 class="subheader-title text-dark font-weight-bold my-1 mr-3"><%= t("view.admin.subject.index.page_title") %></h2>
+        <!--end::Page Title-->
+        <!--begin::Breadcrumb-->
+        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold my-2 p-0">
+          <li class="breadcrumb-item">
+            <a href="" class="text-muted"><%= t("view.admin.subject.index.page_title") %></a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="" class="text-muted"><%= t("view.admin.subject.index.index") %></a>
+          </li>
+        </ul>
+        <!--end::Breadcrumb-->
+      </div>
+      <!--end::Page Heading-->
+    </div>
+    <!--end::Info-->
+  </div>
+</div>
+<!--end::Subheader-->
+
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+  <!--begin::Container-->
+  <div class="container">
+    <%# debugger %>
+    <%= render 'shared/extras/alert' %>
+    <div class="card card-custom">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="card-icon">
+            <i class="flaticon2-favourite text-primary"></i>
+          </span>
+          <h3 class="card-label"><%= t("view.admin.subject.index.subject_list") %></h3>
+        </div>
+        <div class="card-toolbar">
+          <!--begin::Button-->
+          <%= link_to new_admin_subject_path, class: "btn btn-primary font-weight-bolder" do %>
+            <i class="la la-plus"></i><%= t("view.admin.subject.index.new_subject") %>
+          <% end %>
+          <!--end::Button-->
+        </div>
+      </div>
+      <div class="card-body">
+        <!--begin: Datatable-->
+        <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="kt_datatable_length"><label><%= t("view.admin.subject.index.show") %>
+                <select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm" onChange="window.location.href=this.value">
+                  <option value="<%= full_url_with_params(:search, :page, per_page: 10) %>" <%= "selected" if params[:per_page] == "10" %>>10</option>
+                  <option value="<%= full_url_with_params(:search, :page, per_page: 25) %>" <%= "selected" if params[:per_page] == "25" %>>25</option>
+                  <option value="<%= full_url_with_params(:search, :page, per_page: 50) %>" <%= "selected" if params[:per_page] == "50" %>>50</option>
+                  <option value="<%= full_url_with_params(:search, :page, per_page: 100) %>" <%= "selected" if params[:per_page] == "100" %>>100</option>
+                </select> entries</label>
+              </div>
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+              <%= form_tag admin_subjects_url, method: :get do %>
+                <%= hidden_field_tag 'per_page', params[:per_page] %>
+                <div id="kt_datatable_filter" class="dataTables_filter">
+                  <label for="search"><%= t("view.admin.subject.index.search") %>:</label>
+                  <input type="text" id="search" name="search" value="<%= params[:search] %>" class="form-control form-control-sm" placeholder="" aria-controls="kt_datatable">
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table table-bordered table-hover table-checkable dataTable no-footer dtr-inline" id="kt_datatable" style="margin-top: 13px !important; width: 1229px;" role="grid" aria-describedby="kt_datatable_info">
+                <thead>
+                <tr role="row">
+                  <th aria-controls="kt_datatable">#</th>
+                  <th aria-controls="kt_datatable"><%= t("view.admin.subject.index.id") %></th>
+                  <th rowspan="1" colspan="1" style="width: 300px;" aria-controls="kt_datatable"><%= t("view.admin.subject.index.name") %></th>
+                  <th aria-controls="kt_datatable"><%= t("view.admin.subject.index.total_course") %></th>
+                  <th rowspan="1" colspan="1" style="width: 300px;" aria-controls="kt_datatable"><%= t("view.admin.subject.index.description") %></th>
+                  <th aria-controls="kt_datatable"><%= t("view.admin.subject.index.status") %></th>
+                  <th aria-controls="kt_datatable"><%= t("view.admin.subject.index.created_at") %></th>
+                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 105px;" aria-label="Actions"><%= t("view.admin.subject.index.actions") %></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @subjects.each_with_index do |subject, index| %>
+                  <tr role="row" class="<%= index % 2 == 0 ? "even" : "odd" %>">
+                    <td class="sorting_1 dtr-control" tabindex="0"><%= index + 1 %></td>
+                    <td class="sorting_1 dtr-control" tabindex="0"><%= link_to subject.id, admin_subject_path(subject.id) %></td>
+                    <td><%= subject.name %></td>
+                    <td><%= subject.courses.count %></td>
+                    <td><%= subject.description %></td>
+                    <td>
+                      <% if subject.pending? %>
+                        <span class="label label-info label-dot mr-2"></span>
+                        <span class="font-weight-bold text-info"><%= t("view.admin.subject.index.pending") %></span>
+                      <% elsif subject.started? %>
+                        <span class="label label-success label-dot mr-2"></span>
+                        <span class="font-weight-bold text-success"><%= t("view.admin.subject.index.starteda") %></span>
+                      <% else %>
+                        <span class="label label-primary label-dot mr-2"></span>
+                        <span class="font-weight-bold text-primary"><%= t("view.admin.subject.index.finished") %></span>
+                      <% end %>
+                    </td>
+                    <td>
+                      <span class="label label-lg font-weight-boldlabel-light-primary label-inline"><%= subject.created_at %></span>
+                    </td>
+                    <td nowrap="nowrap">
+                      <div class="dropdown dropdown-inline">
+                        <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">
+                          <i class="la la-cog"></i> </a>
+                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                          <ul class="nav nav-hoverable flex-column">
+                            <li class="nav-item">
+                              <a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text"><%= t("view.admin.subject.index.show_course_list") %></span></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text"><%= t("view.admin.subject.index.show_task_list") %></span></a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <%= link_to edit_admin_subject_path(subject), title: t("view.admin.subject.index.edit"), class: "btn btn-sm btn-clean btn-icon" do %>
+                        <i class="la la-edit"></i>
+                      <% end %>
+                      <%= link_to admin_subject_path(subject), title: t("view.admin.subject.index.delete"), class: "btn btn-sm btn-clean btn-icon", method: :delete, data: {confirm: t("view.admin.subject.index.are_you_sure")} do %>
+                        <i class="la la-trash"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+              <%= will_paginate @subjects %>
+            </div>
+          </div>
+        </div>
+        <!--end: Datatable-->
+      </div>
+    </div>
+  </div>
+  <!--end::Container-->
+</div>
+<!--end::Entry-->
+
+<% content_for :footer_content do %>
+<% end %>
