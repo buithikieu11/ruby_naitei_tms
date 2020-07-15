@@ -1,0 +1,145 @@
+<% provide(:title,t("view.user.new.signup_title")) %>
+<%= content_for :head_content do %>
+  <link href="/assets/css/pages/login/login-3.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+<% end %>
+<!--begin::Login-->
+<div class="login login-3 wizard d-flex flex-column flex-lg-row flex-column-fluid wizard" id="kt_login">
+  <!--begin::Aside-->
+  <div class="login-aside d-flex flex-column flex-row-auto">
+    <!--begin::Aside Top-->
+    <div class="d-flex flex-column-auto flex-column pt-15 px-30">
+      <!--begin::Aside header-->
+      <div class="login-logo py-6">
+        <img src="assets/media/logos/logo-1.png" class="max-h-70px" alt=""/>
+      </div>
+      <!--end::Aside header-->
+
+      <!--begin: Wizard Nav-->
+      <div class="wizard-nav pt-5 pt-lg-30">
+        <!--begin::Wizard Steps-->
+        <div class="wizard-steps">
+          <!--begin::Wizard Step 1 Nav-->
+          <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+            <div class="wizard-wrapper">
+              <div class="wizard-icon">
+                <i class="wizard-check ki ki-check"></i>
+                <span class="wizard-number">1</span>
+              </div>
+              <div class="wizard-label">
+                <h3 class="wizard-title">
+                  <%=t("view.user.new.signup_account")%>
+                </h3>
+                <div class="wizard-desc">
+                  <%=t("view.user.new.activate_account")%>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="wizard-step" data-wizard-type="step">
+            <div class="wizard-wrapper">
+              <div class="wizard-icon">
+                <i class="wizard-check ki ki-check"></i>
+                <span class="wizard-number">2</span>
+              </div>
+              <div class="wizard-label">
+                <h3 class="wizard-title">
+                  <%=t("view.user.new.success")%>
+                </h3>
+                <div class="wizard-desc">
+                  <%=t("view.user.new.welcome")%>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      
+        </div>
+        <!--end::Wizard Steps-->
+      </div>
+      <!--end: Wizard Nav-->
+    </div>
+    <!--end::Aside Top-->
+
+    <!--begin::Aside Bottom-->
+   
+  </div>
+  <!--begin::Aside-->
+
+  <!--begin::Content-->
+  <div class="login-content flex-column-fluid d-flex flex-column p-10">
+    <!--begin::Top-->
+    
+    <!--end::Top-->
+
+    <!--begin::Wrapper-->
+    <div class="d-flex flex-row-fluid flex-center">
+      <!--begin::Signin-->
+      <div class="login-form login-form-signup">
+        <!--begin::Form-->
+        <%=form_for(@user) do |f| %>
+         <!--begin: Wizard Step 1-->
+          <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+            <!--begin::Title-->
+            <div class="pb-10 pb-lg-15">
+              <h3 class="font-weight-bolder text-dark display5"><%=t("view.user.new.signup_account")%></h3>
+              <div class="text-muted font-weight-bold font-size-h4">
+               <%=t("view.user.new.already_have_account")%>
+              <%= link_to t("view.user.new.login"), login_path,class:"text-primary font-weight-bolder" %>
+              </div>
+              <%= render 'shared/error_messages', object: @user %>
+            </div>
+            <div class="container">
+           
+            <!--begin::Title-->
+
+            <!--begin::Form Group-->
+            <div class="form-group">
+              <label class="font-size-h6 font-weight-bolder text-dark"><%=t("view.user.new.username")%></label>
+              <%= f.text_field :username ,class:"form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6"%>
+            </div>
+            <!--end::Form Group-->
+
+            <!--begin::Form Group-->
+            <div class="form-group">
+              <label class="font-size-h6 font-weight-bolder text-dark"><%=t("view.user.new.email")%></label>
+              <%=f.text_field :email ,class:"form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6"  %>
+            </div>
+            <!--end::Form Group-->
+
+            <!--begin::Form Group-->
+            <div class="form-group">
+              <label class="font-size-h6 font-weight-bolder text-dark"><%=t("view.user.new.phone")%></label>
+              <%=f.text_field :phone_number,class:"form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" %>
+            </div>
+            <div class="form-group">
+              <label class="font-size-h6 font-weight-bolder text-dark"><%=t("view.user.new.password")%></label>
+              <%=f.password_field :password,class:"form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6"  %>
+            </div>
+            <div class="form-group">
+              <label class="font-size-h6 font-weight-bolder text-dark"><%=t("view.user.new.password_confirmation")%></label>
+              <%=f.password_field :password_confirmation,class:"form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6" %>
+            </div>
+            <!--end::Form Group-->
+          </div>
+           </div>
+        
+          
+          <div class="d-flex justify-content-between pt-3">
+           
+              <%= f.submit t("view.user.new.submit"),class:"btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3 ml-8" %>
+            </div>
+          </div>
+          <!--end: Wizard Actions-->
+        <%end%>
+        <!--end::Form-->
+      </div>
+      <!--end::Signin-->
+    </div>
+    <!--end::Wrapper-->
+  </div>
+  <!--end::Content-->
+</div>
+<!--end::Login-->
+<%= content_for :footer_content do %>
+  <script src="assets/js/pages/custom/login/login-3.js?v=7.0.6"></script>
+<% end %>
