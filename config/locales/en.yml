@@ -10,17 +10,23 @@ en:
     admin:
       application:
         access_denied: "You are not permitted to access this page!"
-      controller:
-        subject:
-          general:
-            not_found: "There is no subjects matches what you're looking for!"
-          index:
-            no_result: "There is no subjects matches what you're looking for!"
-          destroy:
-            deleted: "Deleted subject successfully."
-            failed: "Failed to delete the subject."
+      user:
+        create: "create user successfully"
+        index:
+          invalid_user_warning: "Can't find the user you want"
+          delete_user_success: "Delete Successfully"
+          delete_user_fail: "Cannot Delete this user"
+          no_user_found_warning: "No result"
+      subject:
+        general:
+          not_found: "There is no subjects matches what you're looking for!"
+        index:
+          no_result: "There is no subjects matches what you're looking for!"
+        destroy:
+          deleted: "Deleted subject successfully."
+          failed: "Failed to delete the subject."
     user:
-      create: "create user successfully"    
+      create: "create user successfully"
   model:
   view:
     session:
@@ -35,21 +41,42 @@ en:
         slogan1: "Sun Asterisk"
         slogan2: "Do awesome things that matter"
     user:
-       new:
-         signup_title: "Sign Up"  
-         signup_account: "Signup Account"  
-         activate_account: "After signup go to mail to activate your account"
-         success: "Signup successfully"
-         welcome: "Welcome to you participate in trainning management system"
-         already_have_account: "Already have an Account ?"
-         username: "Username"
-         phone: "Phone"
-         password: "Password"
-         email: "Email"
-         login: "Sign in now!"
-         password_confirmation: "Password_confirmation"
-         submit: "Submit"
+      new:
+        signup_title: "Sign Up"
+        signup_account: "Signup Account"
+        activate_account: "After signup go to mail to activate your account"
+        success: "Signup successfully"
+        welcome: "Welcome to you participate in trainning management system"
+        already_have_account: "Already have an Account ?"
+        username: "Username"
+        phone: "Phone"
+        password: "Password"
+        email: "Email"
+        login: "Sign in now!"
+        password_confirmation: "Password_confirmation"
+        submit: "Submit"
     admin:
+      user:
+        index:
+          page_title: "Users"
+          subheader_title: "Users"
+          breadcrumb1: "Users"
+          breadcrumb2: "Default"
+          column_index: "#"
+          column_user_id: "ID"
+          column_username: "User Name"
+          column_email: "Email"
+          column_phone_number: "Phone Number"
+          column_role: "Role"
+          column_created_at: "Created At"
+          column_actions: "Actions"
+          title_delete_user: "Delete Users"
+          title_edit_user: "Edit Users"
+          label_select_show: "Show"
+          label_select_entry: "entries"
+          label_search: "Search:"
+          label_new_user: "New User"
+          label_user_list: "User List"
       subject:
         index:
           page_title: "Subjects"
@@ -73,11 +100,3 @@ en:
           show_course_list: "Show Course List"
           show_task_list: "Show Task List"
           are_you_sure: "Are you sure?"
-
-
-
-
-
-        
-
-

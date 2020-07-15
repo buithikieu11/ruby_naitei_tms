@@ -4,6 +4,9 @@ controller:
     subject:
       default_per_page: 10
       default_page: 1
+    user:
+      default_page: 1
+      default_per_page: 10
 model:
   user:
     username:
