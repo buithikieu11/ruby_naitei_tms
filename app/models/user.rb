@@ -29,7 +29,7 @@ class User < ApplicationRecord
                     format: {with: VALID_EMAIL_REGEX}
   validates :phone_number, length: {minimum: MODEL_SETTINGS.phone_number.min_length,
                                     maximum: MODEL_SETTINGS.phone_number.max_length},
-                           format: {with: VALID_PHONE_NUMBER_REGEX},allow_blank: true
+                           format: {with: VALID_PHONE_NUMBER_REGEX}, allow_blank: true
 
   has_secure_password
 

@@ -9,7 +9,16 @@ en:
         invalid_login_warning: "Invalid email/password combination"
     admin:
       application:
-        access_denied: "You are not permit to access this page!"
+        access_denied: "You are not permitted to access this page!"
+      controller:
+        subject:
+          general:
+            not_found: "There is no subjects matches what you're looking for!"
+          index:
+            no_result: "There is no subjects matches what you're looking for!"
+          destroy:
+            deleted: "Deleted subject successfully."
+            failed: "Failed to delete the subject."
     user:
       create: "create user successfully"    
   model:
@@ -39,7 +48,31 @@ en:
          email: "Email"
          login: "Sign in now!"
          password_confirmation: "Password_confirmation"
-         submit: "Submit"   
+         submit: "Submit"
+    admin:
+      subject:
+        index:
+          page_title: "Subjects"
+          index: "Index"
+          subject_list: "Subject List"
+          new_subject: "New Subject"
+          show: "Show"
+          search: "Search"
+          id: "ID"
+          name: "Name"
+          description: "Description"
+          total_course: "Total Course"
+          status: "Status"
+          pending: "Pending"
+          started: "Started"
+          finished: "Finished"
+          created_at: "Created At"
+          actions: "Action"
+          edit: "Edit"
+          delete: "Delete"
+          show_course_list: "Show Course List"
+          show_task_list: "Show Task List"
+          are_you_sure: "Are you sure?"
 
 
 
