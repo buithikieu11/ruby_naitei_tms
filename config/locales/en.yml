@@ -11,7 +11,9 @@ en:
       application:
         access_denied: "You are not permitted to access this page!"
       user:
-        create: "create user successfully"
+        create: "User was created successfully"
+        edit:
+          update_user_success: "User was updated successfully!"
         index:
           invalid_user_warning: "Can't find the user you want"
           delete_user_success: "Delete Successfully"
@@ -80,6 +82,33 @@ en:
           label_search: "Search:"
           label_new_user: "New User"
           label_user_list: "User List"
+        new:
+          title_create_user: "Create User"
+          label_user_name: "Username"
+          label_email: "Email"
+          label_password: "Password"
+          label_password_confirmation: "Password confirmation"
+          label_phone_number: "Phone number"
+          label_department: "Department"
+          label_trainee: "Trainee"
+          label_supervisor: "Supervisor"
+          title_role: "Role"
+          create_button: "Create"
+          cancel_button: "Cancel"
+        edit:
+          title_edit_user: "Update"
+          label_user_name: "Username"
+          label_email: "Email"
+          label_password: "Password"
+          label_password_confirmation: "Password confirmation"
+          label_phone_number: "Phone number"
+          label_department: "Department"
+          title_role: "Role"
+          label_trainee: "Trainee"
+          label_supervisor: "Supervisor"
+          update_button: "Update"
+          cancel_button: "Cancel"
+
       subject:
         general:
           subjects: "Subjects"
