@@ -115,3 +115,13 @@ en:
           page_title: "Edit Subject"
           edit_subject: "Edit Subject"
           edit: "Edit"
+        show:
+          page_title: "Show Subject"
+          show: "Show"
+          task_list: "Task List"
+          info: "Info"
+          id: "ID"
+          name: "Name"
+          description: "Description"
+          status: "Status"
+          created_at: "Created At"
