@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: "application#home"
     resources :subjects
+    resources :users
   end
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"

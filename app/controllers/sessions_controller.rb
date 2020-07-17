@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   layout "auth"
 
-  before_action :check_logged_in_user
+  before_action :restrict_logged_in_user
 
   def new; end
 
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       params[:session][:remember_me] == "1" ? remember(user) : forget(user)
       redirect_to root_path
     else
-      flash.now[:warning] = t("controller.session.create.invalid_login_warning")
+      flash.now[:danger] = t("controller.session.create.invalid_login_warning")
       render "new"
     end
   end
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   end
 
   private
-  def check_logged_in_user
+  def restrict_logged_in_user
     redirect_to root_url unless current_user.nil?
   end
 end

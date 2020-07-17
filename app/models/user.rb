@@ -31,6 +31,7 @@ class User < ApplicationRecord
                                     maximum: MODEL_SETTINGS.phone_number.max_length},
                            format: {with: VALID_PHONE_NUMBER_REGEX}, allow_blank: true
 
+  scope :find_by_user_name, ->(name){where("username LIKE ?", "%#{name}%") if name.present?}
   has_secure_password
 
   def self.digest string
