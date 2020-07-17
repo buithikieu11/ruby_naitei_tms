@@ -7,10 +7,7 @@ class Subject < ApplicationRecord
   has_many :users, through: :user_subjects
   has_many :tasks, dependent: :destroy
 
-  VALID_NAME_REGEX = /\A[a-zA-Z0-9 ]+\z/i.freeze
-
-  validates :name, presence: true,
-                   format: {with: VALID_NAME_REGEX}
+  validates :name, presence: true
   validates :status, presence: true,
                      numericality: true,
                      inclusion: {in: statuses.keys}
