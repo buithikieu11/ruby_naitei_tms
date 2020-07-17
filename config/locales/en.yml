@@ -2,6 +2,8 @@ en:
   app:
     date:
       formats: "%H:%M %m/%d/%y"
+    dates:
+      format: "%H:%M %m/%d/%Y"
     base_title: "Training Management System"
     admin:
       base_title: "Training Management System - Administration"
@@ -9,6 +11,10 @@ en:
     session:
       create:
         invalid_login_warning: "Invalid email/password combination"
+    user:
+      create: "Created user successfully"
+      show:
+        user_not_found: "Can't find the user you want"
     admin:
       application:
         access_denied: "You are not permitted to access this page!"
@@ -41,10 +47,17 @@ en:
             delete_success: "Deleted this course successfully" 
             delete_failed: "You don't have permission to delete this course"
             delete_fail: "Can't delete this course"  
-    user:
-      show:
-        user_not_found: "Can't find the user you want"
-      create: "Created user successfully"
+      task:
+        general:
+          not_found: "There is no tasks matches what you're looking for!"
+        index:
+          no_result: "There is no tasks matches what you're looking for!"
+        new:
+        create:
+          created_successfully: "Created new Task successfully."
+        destroy:
+          deleted: "Deleted task successfully."
+          failed: "Failed to delete the task."
   model:
     course:
       invalid_date_message: "Day start is lower than day end"
@@ -198,9 +211,8 @@ en:
           owner: "Owner"
           trainee: "Trainee"
           all: "All"
-
-
-
-        
-
-
+      task:
+        index:
+          page_title: "Task list of %{subject_name}"
+          index: "Index"
+          new_task: "New Task"
