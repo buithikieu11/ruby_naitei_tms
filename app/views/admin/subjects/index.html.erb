@@ -43,12 +43,12 @@
           <span class="card-icon">
             <i class="flaticon2-favourite text-primary"></i>
           </span>
-          <h3 class="card-label"><%= t("view.admin.subject.index.subject_list") %></h3>
+          <h3 class="card-label"><%= t("view.admin.subject.new.new_subject") %></h3>
         </div>
         <div class="card-toolbar">
           <!--begin::Button-->
-          <%= link_to new_admin_subject_path, class: "btn btn-primary font-weight-bolder" do %>
-            <i class="la la-plus"></i><%= t("view.admin.subject.index.new_subject") %>
+          <%= link_to new_admin_subject_path, class: "btn btn-primary font-weight-bolder", data: {turbolinks: false} do %>
+            <i class="la la-plus"></i><%= t("view.admin.subject.new.new_subject") %>
           <% end %>
           <!--end::Button-->
         </div>
@@ -88,7 +88,7 @@
                   <th rowspan="1" colspan="1" style="width: 300px;" aria-controls="kt_datatable"><%= t("view.admin.subject.index.name") %></th>
                   <th aria-controls="kt_datatable"><%= t("view.admin.subject.index.total_course") %></th>
                   <th rowspan="1" colspan="1" style="width: 300px;" aria-controls="kt_datatable"><%= t("view.admin.subject.index.description") %></th>
-                  <th aria-controls="kt_datatable"><%= t("view.admin.subject.index.status") %></th>
+                  <th aria-controls="kt_datatable"><%= t("view.admin.subject.general.status") %></th>
                   <th aria-controls="kt_datatable"><%= t("view.admin.subject.index.created_at") %></th>
                   <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 105px;" aria-label="Actions"><%= t("view.admin.subject.index.actions") %></th>
                 </tr>
@@ -104,13 +104,13 @@
                     <td>
                       <% if subject.pending? %>
                         <span class="label label-info label-dot mr-2"></span>
-                        <span class="font-weight-bold text-info"><%= t("view.admin.subject.index.pending") %></span>
+                        <span class="font-weight-bold text-info"><%= t("view.admin.subject.general.pending") %></span>
                       <% elsif subject.started? %>
                         <span class="label label-success label-dot mr-2"></span>
-                        <span class="font-weight-bold text-success"><%= t("view.admin.subject.index.starteda") %></span>
+                        <span class="font-weight-bold text-success"><%= t("view.admin.subject.general.started") %></span>
                       <% else %>
                         <span class="label label-primary label-dot mr-2"></span>
-                        <span class="font-weight-bold text-primary"><%= t("view.admin.subject.index.finished") %></span>
+                        <span class="font-weight-bold text-primary"><%= t("view.admin.subject.general.finished") %></span>
                       <% end %>
                     </td>
                     <td>

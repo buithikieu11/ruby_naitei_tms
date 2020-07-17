@@ -22,6 +22,9 @@ en:
           not_found: "There is no subjects matches what you're looking for!"
         index:
           no_result: "There is no subjects matches what you're looking for!"
+        new:
+        create:
+          created_successfully: "Created new Subject successfully."
         destroy:
           deleted: "Deleted subject successfully."
           failed: "Failed to delete the subject."
@@ -78,6 +81,13 @@ en:
           label_new_user: "New User"
           label_user_list: "User List"
       subject:
+        general:
+          subjects: "Subjects"
+          courses: "Courses"
+          pending: "Pending"
+          started: "Started"
+          finished: "Finished"
+          status: "Status"
         index:
           page_title: "Subjects"
           index: "Index"
@@ -89,10 +99,6 @@ en:
           name: "Name"
           description: "Description"
           total_course: "Total Course"
-          status: "Status"
-          pending: "Pending"
-          started: "Started"
-          finished: "Finished"
           created_at: "Created At"
           actions: "Action"
           edit: "Edit"
@@ -100,3 +106,8 @@ en:
           show_course_list: "Show Course List"
           show_task_list: "Show Task List"
           are_you_sure: "Are you sure?"
+        new:
+          page_title: "New Subject"
+          new: "New"
+          new_subject: "New Subject"
+          name_field_description: "Please enter the subject name"

@@ -13,6 +13,33 @@
   <link href="<%= root_url %>assets/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
   <link href="<%= root_url %>assets/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
   <link rel="shortcut icon" href="<%= root_url %>assets/media/logos/favicon.ico"/>
+  <script>
+      function pushNotification(content, type = 'success')
+      {
+          $.notify(content, {
+              type: type,
+              allow_dismiss: true,
+              newest_on_top: true,
+              mouse_over:  false,
+              spacing: 10,
+              timer: 5,
+              placement: {
+                  from: "top",
+                  align: "right"
+              },
+              offset: {
+                  x: 30,
+                  y: 30
+              },
+              delay: 5000,
+              z_index: 10000,
+              animate: {
+                  enter: 'animate__animated animate__bounce',
+                  exit: 'animate__animated animate__flash'
+              }
+          });
+      }
+  </script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= yield(:head_content) %>
