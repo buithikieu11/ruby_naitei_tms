@@ -12,5 +12,8 @@ class Subject < ApplicationRecord
                      numericality: true,
                      inclusion: {in: statuses.keys}
 
+  accepts_nested_attributes_for :tasks, allow_destroy: true,
+                                reject_if: proc{|att| att['name'].blank?}
+
   scope :find_by_name, ->(name){where("name LIKE ?", "%#{name}%")}
 end

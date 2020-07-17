@@ -20,8 +20,11 @@ class Admin::SubjectsController < Admin::ApplicationController
   def edit; end
 
   def create
-    params = subject_params
+    params = subject_params.to_h
     params[:status] = params[:status].to_i
+    params[:tasks_attributes].keys.each_with_index do |key,  index|
+      params[:tasks_attributes][key][:step] = index + 1
+    end
     @subject = Subject.new(params)
     if @subject.save
       flash[:success] = t("controller.admin.subject.create.created_successfully")
@@ -69,6 +72,6 @@ class Admin::SubjectsController < Admin::ApplicationController
 
   def subject_params
     params.require(:subject)
-          .permit(:name, :description, :status)
+          .permit(:name, :description, :status, tasks_attributes: [:name, :duration, :description])
   end
 end

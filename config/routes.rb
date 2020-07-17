@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: "application#home"
     resources :subjects do
-      resources :tasks, except: [:show]
+      resources :tasks, except: [:show, :new, :create]
     end
     resources :users
     resources :courses, only: [:index,:destroy]
