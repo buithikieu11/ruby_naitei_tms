@@ -111,3 +111,7 @@ en:
           new: "New"
           new_subject: "New Subject"
           name_field_description: "Please enter the subject name"
+        edit:
+          page_title: "Edit Subject"
+          edit_subject: "Edit Subject"
+          edit: "Edit"

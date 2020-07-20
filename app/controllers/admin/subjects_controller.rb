@@ -1,7 +1,7 @@
 class Admin::SubjectsController < Admin::ApplicationController
   include Admin::ApplicationHelper
 
-  before_action :get_subject, only: [:destroy]
+  before_action :get_subject, only: [:edit, :update, :destroy]
   before_action :extract_params, only: [:index]
   before_action :subject_params, only: [:create, :update]
 
@@ -15,6 +15,8 @@ class Admin::SubjectsController < Admin::ApplicationController
     @subject = Subject.new
   end
 
+  def edit; end
+
   def create
     params = subject_params
     params[:status] = params[:status].to_i
@@ -24,6 +26,17 @@ class Admin::SubjectsController < Admin::ApplicationController
       redirect_to admin_subjects_path
     else
       render "new"
+    end
+  end
+
+  def update
+    params = subject_params
+    params[:status] = params[:status].to_i
+    if @subject.update(params)
+      flash[:success] = t("controller.admin.subject.create.created_successfully")
+      redirect_to admin_subjects_path
+    else
+      render "edit"
     end
   end
 
