@@ -1,5 +1,7 @@
 en:
   app:
+    date:
+      formats: "%H:%M %m/%d/%y"
     base_title: "Training Management System"
     admin:
       base_title: "Training Management System - Administration"
@@ -30,7 +32,6 @@ en:
         destroy:
           deleted: "Deleted subject successfully."
           failed: "Failed to delete the subject."
-
       course:
           index:
             search_success: "Searched successfully"
@@ -40,7 +41,13 @@ en:
             delete_success: "Deleted this course successfully" 
             delete_failed: "You don't have permission to delete this course"
             delete_fail: "Can't delete this course"  
+    user:
+      show:
+        user_not_found: "Can't find the user you want"
+      create: "Created user successfully"
   model:
+    course:
+      invalid_date_message: "Day start is lower than day end"
   view:
     session:
       new:
@@ -68,6 +75,17 @@ en:
         login: "Sign in now!"
         password_confirmation: "Password_confirmation"
         submit: "Submit"
+      show:
+        breadcrumb1: "User"
+        breadcrumb2: "Profile"
+        profile_tab_item: "Profile"
+        course_tab_item: "Course"
+        tabs:
+          course_tab:
+            day_start_label: "Day start:"
+            day_end_label: "Day End:"
+            description_span: "Description:"
+            filter_label: "Filter by status"
     admin:
       user:
         index:
@@ -116,7 +134,6 @@ en:
           label_supervisor: "Supervisor"
           update_button: "Update"
           cancel_button: "Cancel"
-
       subject:
         general:
           subjects: "Subjects"
@@ -152,27 +169,21 @@ en:
           page_title: "Edit Subject"
           edit_subject: "Edit Subject"
           edit: "Edit"
-<<<<<<< HEAD
         show:
           page_title: "Show Subject"
           show: "Show"
           task_list: "Task List"
           info: "Info"
-=======
-
       course:
         index:
           page_title: "Courses"
           new_course: "New Course"
           search: "Search"
->>>>>>> Finish Admin/Course Page
           id: "ID"
           name: "Name"
           description: "Description"
           status: "Status"
-<<<<<<< HEAD
           created_at: "Created At"
-=======
           role: "Role"
           actions: "Actions"
           detail: "Show Details"
@@ -193,4 +204,3 @@ en:
         
 
 
->>>>>>> Finish Admin/Course Page
