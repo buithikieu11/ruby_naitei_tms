@@ -22,7 +22,7 @@ class User < ApplicationRecord
                        length: {minimum: MODEL_SETTINGS.username.min_length,
                                 maximum: MODEL_SETTINGS.username.max_length},
                        format: {with: VALID_USERNAME_REGEX}
-  validates :password, presence: true
+  validates :password, presence: true, allow_nil: true
   validates :email, presence: true,
                     uniqueness: {case_sensitive: false},
                     length: {maximum: MODEL_SETTINGS.email.max_length},

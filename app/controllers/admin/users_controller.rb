@@ -1,7 +1,8 @@
 class Admin::UsersController < Admin::ApplicationController
   include Admin::ApplicationHelper
 
-  before_action :get_user, only: [:edit, :destroy]
+  # before_action :get_user, only: [:show, :edit, :update, :destroy]
+  before_action :get_user, except: [:index, :new, :create]
   before_action :extract_params
 
   def show; end
@@ -19,10 +20,32 @@ class Admin::UsersController < Admin::ApplicationController
     end
   end
 
-  def new; end
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      flash[:success] = "User was created successfully!"
+      redirect_to admin_users_path
+    else
+      render "new"
+    end
+  end
 
   def edit; end
 
+  def update
+    params = user_params.except(:password, :password_confirmation)
+    params[:role] = params[:role].to_i
+    if @user.update(params)
+      flash[:success] = t("controller.admin.user.edit.update_user_success")
+      redirect_to admin_users_path
+    else
+      render "edit"
+    end
+  end
   private
   def get_user
     @user = User.find_by(id: params[:id])
@@ -37,4 +60,7 @@ class Admin::UsersController < Admin::ApplicationController
     @per_page = params[:per_page].present? && is_numeric?(params[:per_page]) ? @per_page : Settings.controller.admin.user.default_per_page
   end
 
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation, :phone_number, :department, :role)
+  end
 end
