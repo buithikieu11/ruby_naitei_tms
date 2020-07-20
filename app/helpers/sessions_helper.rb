@@ -27,6 +27,10 @@ module SessionsHelper
     end
   end
 
+  def get_current_user
+    @user = current_user
+  end
+
   def logged_in?
     current_user.present?
   end

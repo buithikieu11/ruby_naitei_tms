@@ -32,6 +32,7 @@ class User < ApplicationRecord
                            format: {with: VALID_PHONE_NUMBER_REGEX}, allow_blank: true
 
   scope :find_by_user_name, ->(name){where("username LIKE ?", "%#{name}%") if name.present?}
+  scope :filter_by_role, ->(role){where role: role if role.present? && role != "default"}
   has_secure_password
 
   def self.digest string

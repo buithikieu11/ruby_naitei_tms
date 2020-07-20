@@ -5,6 +5,6 @@ class CourseUser < ApplicationRecord
   belongs_to :user
   belongs_to :course
 
-  scope :filter_course_by_status, ->(status){where status: status if status.present?}
+  scope :filter_course_by_status, ->(status){where status: status if status.present? && status != "all"}
 
 end
