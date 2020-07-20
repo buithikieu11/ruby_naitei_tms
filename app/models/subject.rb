@@ -11,4 +11,5 @@ class Subject < ApplicationRecord
                                 reject_if: proc{|att| att['name'].blank?}
 
   scope :find_by_name, ->(name){where("name LIKE ?", "%#{name}%")}
+  scope :sort_by_name, ->{order('name ASC')}
 end

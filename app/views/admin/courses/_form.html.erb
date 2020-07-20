@@ -1,0 +1,87 @@
+<% content_for :head_content do %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+  <style>
+    .bootstrap-select>.dropdown-toggle.btn {
+      height: calc(1.5em + 1.3rem + 2px);
+    }
+  </style>
+<% end %>
+<!--begin::Subheader-->
+<div class="subheader py-3 py-lg-8 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <!--begin::Info-->
+    <div class="d-flex align-items-center flex-wrap mr-1">
+      <!--begin::Page Heading-->
+      <div class="d-flex align-items-baseline flex-wrap mr-5">
+        <!--begin::Page Title-->
+      </div>
+      <!--end::Page Heading-->
+    </div>
+    <!--end::Info-->
+  </div>
+</div>
+<!--end::Subheader-->
+
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+  <!--begin::Container-->
+  <div class="container">
+    <%# debugger %>
+    <%= render 'shared/extras/alert' %>
+    <div class="card card-custom">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="card-icon">
+            <i class="flaticon2-favourite text-primary"></i>
+          </span>
+          <h3 class="card-label"><%= t("view.admin.course.new.page_title") %></h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= form_for [:admin, @course], class: "form" do |f| %>
+          <div class="card-body">
+            <div class="form-group">
+              <%= f.label :name %>
+              <%= f.text_field :name, class: "form-control #{@course.errors[:name].present? ? "is-invalid" : ""}", placeholder: "" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :description %>
+              <%= f.text_area :description, class: "form-control #{@course.errors[:description].present? ? "is-invalid" : ""}", rows: 3 %>
+              </div>    
+               <div class="form-group">
+               <%= f.label :day_start %>
+               <%= f.date_field :day_start, class: 'form-control' %>
+              </div>
+               <div class="form-group">
+               <%= f.label :day_end %>
+               <%= f.date_field :day_end, class: "form-control"%>
+             </div>
+            <div class="form-group">
+              <label for="exampleSelect1"><%=t("view.admin.subject.index.page_title")%></label>
+              <select name="course[subject_ids][]" class="form-control selectpicker"  multiple data-live-search="true">
+                <% @subjects.each do |subject| %>
+                  <option value="<%= subject.id %>"><%= "#{subject.id}. #{subject.name}" %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-primary mr-2"><%=t("view.admin.course.new.submit")%></button>
+            <span class="ml-2">or <%= link_to t("view.admin.course.new.cancel"), admin_courses_path, class: "font-weight-bold ml-2" %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!--end::Container-->
+</div>
+<!--end::Entry-->
+
+<% content_for :footer_content do %>
+  <% @course.errors.full_messages.each do |msg| %>
+    <script>
+      pushNotification("<%= msg %>", "danger")
+    </script>
+  <% end %>
+<% end %>

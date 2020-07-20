@@ -48,6 +48,10 @@ en:
             delete_success: "Deleted this course successfully" 
             delete_failed: "You don't have permission to delete this course"
             delete_fail: "Can't delete this course"  
+          create:
+            create_success: "Created course successfully"
+            create_fail: "Create course failed"   
+            transaction_fail: "Oops. We tried to do an invalid operation!"
       task:
         general:
           not_found: "There is no tasks matches what you're looking for!"
@@ -59,6 +63,7 @@ en:
         destroy:
           deleted: "Deleted task successfully."
           failed: "Failed to delete the task."
+         
   model:
     course:
       invalid_date_message: "Day start is lower than day end"
@@ -216,6 +221,10 @@ en:
           owner: "Owner"
           trainee: "Trainee"
           all: "All"
+        new:
+          page_title: "New course"
+          submit: "Submit"
+          cancel: "Cancel"
       task:
         general:
           new_task: "New Task"
