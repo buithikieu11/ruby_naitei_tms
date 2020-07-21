@@ -1,0 +1,120 @@
+<% provide :title, t("view.admin.subject.show.page_title") %>
+<% content_for :head_content do %>
+<% end %>
+<!--begin::Subheader-->
+<div class="subheader py-3 py-lg-8 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <!--begin::Info-->
+    <div class="d-flex align-items-center flex-wrap mr-1">
+      <!--begin::Page Heading-->
+      <div class="d-flex align-items-baseline flex-wrap mr-5">
+        <!--begin::Page Title-->
+        <h2 class="subheader-title text-dark font-weight-bold my-1 mr-3"><%= t("view.admin.subject.show.page_title") %></h2>
+        <!--end::Page Title-->
+        <!--begin::Breadcrumb-->
+        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold my-2 p-0">
+          <li class="breadcrumb-item">
+            <a href="" class="text-muted"><%= t("view.admin.subject.general.subjects") %></a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="" class="text-muted"><%= t("view.admin.subject.show.show") %></a>
+          </li>
+        </ul>
+        <!--end::Breadcrumb-->
+      </div>
+      <!--end::Page Heading-->
+    </div>
+    <!--end::Info-->
+  </div>
+</div>
+<!--end::Subheader-->
+
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+  <!--begin::Container-->
+  <div class="container">
+    <%# debugger %>
+    <%= render 'shared/extras/alert' %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-sm-12 col-md-10 col-lg-9 col-xl-8">
+        <div class="card card-custom card-stretch gutter-b">
+          <div class="card-header border-0 pt-5">
+            <h3 class="card-title align-items-start flex-column">
+              <span class="card-label font-weight-bolder text-dark"><%= t("view.admin.subject.show.info") %></span>
+            </h3>
+            <div class="card-toolbar">
+              <%= link_to admin_subject_tasks_path(subject_id: @subject.id), class: "btn btn-primary" do %>
+                <i class="fa fa-list"></i> <%= t("view.admin.subject.show.task_list") %>
+              <% end %>
+            </div>
+          </div>
+          <!--begin::Body-->
+          <div class="card-body pt-2 pb-0">
+            <!--begin::Table-->
+            <div class="table-responsive">
+              <table class="table table-borderless table-vertical-center">
+                <tbody>
+                <tr>
+                  <td class="pl-0">
+                    <span class="font-weight-bold d-block"><%= t("view.admin.subject.show.id") %></span>
+                  </td>
+                  <td>
+                    <%= @subject.id %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pl-0">
+                    <span class="font-weight-bold d-block"><%= t("view.admin.subject.show.name") %></span>
+                  </td>
+                  <td>
+                    <%= @subject.name %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pl-0">
+                    <span class="font-weight-bold d-block"><%= t("view.admin.subject.show.description") %></span>
+                  </td>
+                  <td>
+                    <%= @subject.description %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pl-0">
+                    <span class="font-weight-bold d-block"><%= t("view.admin.subject.show.status") %></span>
+                  </td>
+                  <td>
+                    <% if @subject.pending? %>
+                      <span class="label label-info label-dot mr-2"></span>
+                      <span class="font-weight-bold text-info"><%= t("view.admin.subject.general.pending") %></span>
+                    <% elsif @subject.started? %>
+                      <span class="label label-success label-dot mr-2"></span>
+                      <span class="font-weight-bold text-success"><%= t("view.admin.subject.general.started") %></span>
+                    <% else %>
+                      <span class="label label-primary label-dot mr-2"></span>
+                      <span class="font-weight-bold text-primary"><%= t("view.admin.subject.general.finished") %></span>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="pl-0">
+                    <span class="font-weight-bold d-block"><%= t("view.admin.subject.show.created_at") %></span>
+                  </td>
+                  <td>
+                    <%= @subject.created_at %>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!--end::Table-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end::Container-->
+</div>
+<!--end::Entry-->
+
+<% content_for :footer_content do %>
+<% end %>

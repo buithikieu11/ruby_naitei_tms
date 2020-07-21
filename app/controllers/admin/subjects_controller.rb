@@ -1,7 +1,7 @@
 class Admin::SubjectsController < Admin::ApplicationController
   include Admin::ApplicationHelper
 
-  before_action :get_subject, only: [:edit, :update, :destroy]
+  before_action :get_subject, except: [:index, :new, :create]
   before_action :extract_params, only: [:index]
   before_action :subject_params, only: [:create, :update]
 
@@ -14,6 +14,8 @@ class Admin::SubjectsController < Admin::ApplicationController
   def new
     @subject = Subject.new
   end
+
+  def show; end
 
   def edit; end
 
@@ -55,7 +57,6 @@ class Admin::SubjectsController < Admin::ApplicationController
   def get_subject
     @subject = Subject.find_by(id: params[:id])
     return if @subject
-
     flash[:danger] = t("controller.admin.subject.general.not_found")
     redirect_to admin_subjects_path
   end
