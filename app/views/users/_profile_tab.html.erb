@@ -1,0 +1,35 @@
+<div class="card card-custom gutter-b example example-compact">
+  <!--begin::Form-->
+  <%= form_for @user, {class: "form"} do |f| %>
+    <div class="card-body">
+      <div class="form-group">
+        <%= f.label t("view.admin.user.edit.label_user_name") %>
+        <%= f.text_field :username, {class: "form-control", placeholder: "", readonly: true} %>
+      </div>
+      <div class="form-group">
+        <%= f.label t("view.admin.user.edit.label_email") %>
+        <%= f.text_field :email, {class: "form-control", placeholder: "", readonly: true} %>
+      </div>
+      <div class="form-group">
+        <%= f.label t("view.admin.user.edit.label_phone_number") %>
+        <%= f.text_field :phone_number, class: "form-control form-control-solid", readonly: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label t("view.admin.user.edit.label_department") %>
+        <%= f.text_field :department, {class: "form-control form-control-solid", placeholder: "", readonly: true} %>
+      </div>
+      <div class="form-group">
+        <label><%= t("view.admin.user.edit.title_role") %></label>
+        <div class="checkbox-list">
+          <label class="checkbox">
+            <%= f.radio_button(:role, User.roles[:trainee], checked: @user.trainee?, disabled: true)%>
+            <span></span><%= t("view.admin.user.edit.label_trainee") %></label>
+          <label class="checkbox">
+            <%= f.radio_button(:role, User.roles[:supervisor], checked: @user.supervisor?, disabled: true) %>
+            <span></span><%= t("view.admin.user.edit.label_supervisor") %></label>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <!--end::Form-->
+</div>
