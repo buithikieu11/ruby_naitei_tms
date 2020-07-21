@@ -1,0 +1,6 @@
+
+$('.destroy-course').bind('ajax:success', function() {
+    $(this).closest('tr').fadeOut();
+   
+ });
+$("#notice").html("<%= escape_javascript(render :partial => 'shared/extras/alert' , :locals => { :flash => flash }).html_safe %>");

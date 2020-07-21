@@ -1,5 +1,6 @@
 class Admin::ApplicationController < ActionController::Base
   include SessionsHelper
+  
   before_action :require_admin
 
   def home; end

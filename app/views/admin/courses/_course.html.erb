@@ -1,0 +1,48 @@
+<tr role="row" class="<%= index % 2 == 0 ? "even" : "odd"  %>">
+  <td class="sorting_1 dtr-control" tabindex="0"><%= index + 1 %></td>
+  <td><%= course.name %></td>
+  <td><%= course.description %></td>
+  <td>
+    <% if course.pending? %>
+    <span class="label label-info label-dot mr-2"></span>
+    <span class="font-weight-bold text-info"><%=t("view.admin.course.index.pending")%></span>
+    <% elsif course.started? %>
+    <span class="label label-success label-dot mr-2"></span>
+    <span class="font-weight-bold text-success"><%=t("view.admin.course.index.started")%></span>
+    <% else %>
+    <span class="label label-primary label-dot mr-2"></span>
+    <span class="font-weight-bold text-primary"><%=t("view.admin.course.index.finish")%></span>
+    <% end %>
+ </td>
+  <%if check_owner(course)%>
+  <td><%=t("view.admin.index.owner")%></td>
+  <%else%>
+  <td><%=t("view.admin.index.supervisor")%></td>
+  <%end%>
+ <td nowrap="nowrap">
+    <div class="dropdown dropdown-inline">
+      <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">
+      <i class="la la-cog"></i> 
+      </a>
+        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+          <ul class="nav nav-hoverable flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="nav-icon la la-edit"></i><span class="nav-text"><%=t("view.admin.course.index.detail")%></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="nav-icon la la-leaf"></i><span class="nav-text"><%=t("view.admin.course.index.show_subjects")%></span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="nav-icon la la-user"></i><span class="nav-text"><%=t("view.admin.course.index.show_users")%></span></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+   <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" title="Edit details">
+   
+        <i class="la la-edit"></i> </a>
+      <%= link_to admin_course_path(course.id), class: "btn btn-sm btn-clean btn-icon", method: :delete, data: {confirm: "Are you sure?"}, remote: :true, class: "destroy-course" do %>
+      <i class="la la-trash"></i>
+      <% end %>
+  </td>
+</tr>

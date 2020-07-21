@@ -30,8 +30,16 @@ en:
         destroy:
           deleted: "Deleted subject successfully."
           failed: "Failed to delete the subject."
-    user:
-      create: "create user successfully"
+
+      course:
+          index:
+            search_success: "Searched successfully"
+            course_not_found: "Course not available"  
+            filter_success: "Filtered sucessfully"
+          destroy:
+            delete_success: "Deleted this course successfully" 
+            delete_failed: "You don't have permission to delete this course"
+            delete_fail: "Can't delete this course"  
   model:
   view:
     session:
@@ -144,13 +152,45 @@ en:
           page_title: "Edit Subject"
           edit_subject: "Edit Subject"
           edit: "Edit"
+<<<<<<< HEAD
         show:
           page_title: "Show Subject"
           show: "Show"
           task_list: "Task List"
           info: "Info"
+=======
+
+      course:
+        index:
+          page_title: "Courses"
+          new_course: "New Course"
+          search: "Search"
+>>>>>>> Finish Admin/Course Page
           id: "ID"
           name: "Name"
           description: "Description"
           status: "Status"
+<<<<<<< HEAD
           created_at: "Created At"
+=======
+          role: "Role"
+          actions: "Actions"
+          detail: "Show Details"
+          show_subjects: "Show Subjects List"
+          show_users: "Show Users List"
+          add_trainees: "Add Trainees"
+          add_superviosors: "Add Supervisors"
+          pending: "Pending"
+          started: "Started"
+          finish: "Finished"
+          supervisor: "Supervisor"
+          owner: "Owner"
+          trainee: "Trainee"
+          all: "All"
+
+
+
+        
+
+
+>>>>>>> Finish Admin/Course Page

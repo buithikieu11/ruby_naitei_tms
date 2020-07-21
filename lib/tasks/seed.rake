@@ -44,6 +44,7 @@ namespace :seed do
       course.name = "Course #{i}"
       course.description = Faker::Lorem.unique.sentence
       course.status = rand(0..2)
+      course.creator_id=1
       course.day_start = Faker::Date.between(from: "2020/01/01", to: "2020/10/01")
       course.day_end = Faker::Date.between(from: "2020/10/01", to: "2020/12/30")
       course.save
