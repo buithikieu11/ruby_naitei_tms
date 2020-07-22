@@ -10,18 +10,22 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     if @user
-      @courses = @user.courses.filter_course_by_status(params[:status])
+      @courses = @user.courses
+      @user_course_status = @user.course_users.where(status: params[:status])
+      @collection = @courses.zip(@user_course_status)
       render "users/show"
     else
       flash[:danger] = t("controller.user.show.user_not_found")
       redirect_to root_path
     end
+    # @courses = @user.join(:course_users, :courses)
+
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:info] = t("app.controller.user.create")
+      flash[:info] = t("controller.user.create.create_user_success_message")
       redirect_to root_url
     else
       render "users/new", layout: "auth"

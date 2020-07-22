@@ -12,7 +12,8 @@ en:
       create:
         invalid_login_warning: "Invalid email/password combination"
     user:
-      create: "Created user successfully"
+      create:
+        create_user_success_message: "Created user successfully"
       show:
         user_not_found: "Can't find the user you want"
     admin:
@@ -99,6 +100,7 @@ en:
             day_end_label: "Day End:"
             description_span: "Description:"
             filter_label: "Filter by status"
+            no_data_message: "Currently no data"
     admin:
       user:
         index:
