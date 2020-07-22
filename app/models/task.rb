@@ -2,10 +2,7 @@ class Task < ApplicationRecord
   belongs_to :subject
   has_many :user_tasks, dependent: :destroy
 
-  VALID_NAME_REGEX = /\A[a-zA-Z0-9 ]+\z/i.freeze
-
-  validates :name, presence: true,
-                   format: {with: VALID_NAME_REGEX}
+  validates :name, presence: true
   validates :step, presence: true,
                    numericality: {greater_than: Settings.model.task.step.greater_than}
   validates :duration, presence: true,

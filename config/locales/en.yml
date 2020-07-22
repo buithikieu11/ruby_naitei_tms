@@ -55,7 +55,7 @@ en:
           no_result: "There is no tasks matches what you're looking for!"
         new:
         create:
-          created_successfully: "Created new Task successfully."
+          created_successfully: "Created new Task for %{subject_name} successfully."
         destroy:
           deleted: "Deleted task successfully."
           failed: "Failed to delete the task."
@@ -214,7 +214,10 @@ en:
           trainee: "Trainee"
           all: "All"
       task:
+        general:
+          new_task: "New Task"
         index:
           page_title: "Task list of %{subject_name}"
           index: "Index"
-          new_task: "New Task"
+        task:
+          page_title: "New Task for %{subject_name}"
