@@ -3,6 +3,7 @@ class Task < ApplicationRecord
   has_many :user_tasks, dependent: :destroy
 
   enum status: {pending: 0, started: 1, finished: 2}
+
   VALID_NAME_REGEX = /\A[a-zA-Z0-9 ]+\z/i.freeze
 
   validates :name, presence: true,
@@ -14,4 +15,6 @@ class Task < ApplicationRecord
                      inclusion: {in: statuses.keys}
   validates :duration, presence: true,
                        numericality: {greater_than: Settings.model.task.duration.greater_than}
+
+  scope :find_by_name, ->(name){where("name LIKE ?", "%#{name}%") if name.present?}
 end
