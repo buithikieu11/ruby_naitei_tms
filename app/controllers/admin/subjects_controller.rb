@@ -7,6 +7,7 @@ class Admin::SubjectsController < Admin::ApplicationController
 
   def index
     @subjects = Subject.find_by_name(@search)
+                       .order("#{@order_by_column} #{@order_by_order}")
                        .paginate(page: @page, per_page: @per_page)
     flash.now[:danger] = t("controller.admin.subject.index.no_result") if !@search.empty? && @subjects.count == 0
   end
@@ -60,14 +61,22 @@ class Admin::SubjectsController < Admin::ApplicationController
   def get_subject
     @subject = Subject.find_by(id: params[:id])
     return if @subject
+
     flash[:danger] = t("controller.admin.subject.general.not_found")
     redirect_to admin_subjects_path
   end
 
   def extract_params
-    @page = params[:page].present? && is_numeric?(params[:page]) ? params[:page] : Settings.controller.admin.subject.default_page
-    @per_page = params[:per_page].present? && is_numeric?(params[:per_page]) ? params[:per_page] : Settings.controller.admin.subject.default_per_page
-    @search = params[:search].present? && !params[:search].empty? ? params[:search] : ""
+    @page = get_number_value_from_param(params[:page],
+                                        Settings.controller.admin.subject.default_page)
+    @per_page = get_number_value_from_param(params[:per_page],
+                                            Settings.controller.admin.subject.default_per_page)
+    @search = get_string_value_from_param(params[:search])
+    @order_by_column = sort_by_column(params[:order_by],
+                                      Subject.attribute_names,
+                                      Settings.controller.admin.task.default_sort_by_column)
+    @order_by_order = sort_by_order(params[:order],
+                                    Settings.controller.admin.task.default_sort_by_order)
   end
 
   def subject_params
