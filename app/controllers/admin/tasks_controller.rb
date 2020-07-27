@@ -8,6 +8,7 @@ class Admin::TasksController < Admin::ApplicationController
 
   def index
     @tasks = @subject.tasks.find_by_name(@search)
+                     .order("#{@order_by_column} #{@order_by_order}")
                      .paginate(page: @page, per_page: @per_page)
     flash.now[:danger] = t("controller.admin.task.index.no_result") if !@search.nil? && @tasks.count == 0
   end
@@ -18,11 +19,7 @@ class Admin::TasksController < Admin::ApplicationController
 
   def create
     params = task_params.to_h
-    if(@subject.tasks.count == 0)
-      params[:step] = 1
-    else
-      params[:step] = @subject.tasks.last.step + 1
-    end
+    params[:step] = @subject.tasks.count.zero? ? 1 : @subject.tasks.last.step + 1
     params[:duration] = params[:duration].to_i
     @task = @subject.tasks.new(params)
     if @task.save
@@ -61,9 +58,16 @@ class Admin::TasksController < Admin::ApplicationController
   end
 
   def extract_params
-    @page = get_number_value_from_param(params[:page], Settings.controller.admin.task.default_page)
-    @per_page = get_number_value_from_param(params[:per_page], Settings.controller.admin.task.default_per_page)
+    @page = get_number_value_from_param(params[:page],
+                                        Settings.controller.admin.task.default_page)
+    @per_page = get_number_value_from_param(params[:per_page],
+                                            Settings.controller.admin.task.default_per_page)
     @search = get_string_value_from_param(params[:search])
+    @order_by_column = sort_by_column(params[:order_by],
+                                      Task.attribute_names,
+                                      Settings.controller.admin.task.default_sort_by_column)
+    @order_by_order = sort_by_order(params[:order],
+                                    Settings.controller.admin.task.default_sort_by_order)
   end
 
   def task_params

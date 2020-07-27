@@ -10,4 +10,20 @@ module Admin::ApplicationHelper
   def get_string_value_from_param param, default_value = ""
     param.presence || default_value
   end
+
+  def sort_by_column column, model_columns, default_column = "id"
+    if column.present? && model_columns.include?(column.downcase)
+      column.downcase
+    else
+      default_column
+    end
+  end
+
+  def sort_by_order order, default_order = "asc"
+    if order.present? && %w(asc desc).include?(order.downcase)
+      order.downcase
+    else
+      default_order
+    end
+  end
 end

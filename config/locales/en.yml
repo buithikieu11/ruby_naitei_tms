@@ -157,6 +157,9 @@ en:
           started: "Started"
           finished: "Finished"
           status: "Status"
+          asc: "Ascending"
+          desc: "Descending"
+          order_by: "Order By"
         index:
           page_title: "Subjects"
           index: "Index"
@@ -216,6 +219,9 @@ en:
       task:
         general:
           new_task: "New Task"
+          asc: "Ascending"
+          desc: "Descending"
+          order_by: "Order By"
         index:
           page_title: "Task list of %{subject_name}"
           index: "Index"
