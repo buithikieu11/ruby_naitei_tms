@@ -39,8 +39,9 @@
         </span>
       </div>
       <div class="card-toolbar">
-         
+          <%= link_to new_admin_course_path, class: "btn btn-primary font-weight-bolder", data: {turbolinks: false}  do %>
           <i class="la la-plus"></i><%= t("view.admin.course.index.new_course") %>
+        <% end %>
       </div>
 
     </div>

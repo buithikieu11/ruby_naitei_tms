@@ -20,6 +20,8 @@ class Course < ApplicationRecord
   scope :by_status, ->(status){where status: status}
 
   def day_start_is_lower_than_day_end
+    if day_start.present? &&day_end.present?
     errors.add(:invalid_date, I18n.t("model.course.invalid_date_message")) if day_start > day_end
+    end
   end
 end
