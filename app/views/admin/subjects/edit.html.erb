@@ -64,19 +64,6 @@
                         <%= f.text_area :description, class: "form-control #{@subject.errors[:description].present? ? "is-invalid" : ""}", rows: 3 %>
                         <%= render(partial: 'shared/admin/extras/form-validation-errors', locals: {obj: @subject.errors[:description], field_name: :description.capitalize}) if @subject.errors[:description].present? %>
                     </div>
-                    <div class="form-group <%= @subject.errors[:status].present? ? "validated" : "" %>">
-                        <%= f.label :status %>
-                        <div class="radio-inline">
-                          <% Subject.statuses.each do |key, value| %>
-                            <label class="radio radio-success">
-                              <%= f.radio_button :status, Subject.statuses[key].to_i, checked: @subject.status == key %>
-                              <span></span>
-                              <%= t("view.admin.subject.general.#{key}") %>
-                            </label>
-                          <% end %>
-                          <%= render(partial: 'shared/admin/extras/form-validation-errors', locals: {obj: @subject.errors[:status], field_name: :status.capitalize}) if @subject.errors[:status].present? %>
-                        </div>
-                    </div>
                 </div>
                 <div class="card-footer text-right">
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>

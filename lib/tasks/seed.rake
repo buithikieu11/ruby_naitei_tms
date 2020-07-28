@@ -58,7 +58,6 @@ namespace :seed do
       subject = Subject.new
       subject.name = "Subject #{i}"
       subject.description = Faker::Lorem.unique.sentence
-      subject.status = rand(0..2)
       subject.save
       puts subject.errors.messages if subject.errors.any?
     end
@@ -72,7 +71,6 @@ namespace :seed do
       task.name = "Task #{i}"
       task.subject_id = subject_ids.sample
       task.description = Faker::Lorem.unique.sentence
-      task.status = rand(0..2)
       task.step = rand(1..10)
       task.duration = rand(1..100)
       task.save

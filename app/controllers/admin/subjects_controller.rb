@@ -22,7 +22,6 @@ class Admin::SubjectsController < Admin::ApplicationController
 
   def create
     params = subject_params.to_h
-    params[:status] = params[:status].to_i
     params[:tasks_attributes].keys.each_with_index do |key,  index|
       params[:tasks_attributes][key][:step] = index + 1
     end
@@ -37,7 +36,6 @@ class Admin::SubjectsController < Admin::ApplicationController
 
   def update
     params = subject_params
-    params[:status] = params[:status].to_i
     if @subject.update(params)
       flash[:success] = t("controller.admin.subject.create.created_successfully")
       redirect_to admin_subjects_path
