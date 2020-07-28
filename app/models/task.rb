@@ -4,7 +4,8 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
   validates :step, presence: true,
-                   numericality: {greater_than: Settings.model.task.step.greater_than}
+                   numericality: {greater_than: Settings.model.task.step.greater_than,
+                                  only_integer: true}
   validates :duration, presence: true,
                        numericality: {greater_than: Settings.model.task.duration.greater_than}
 
