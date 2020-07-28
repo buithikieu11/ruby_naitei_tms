@@ -17,14 +17,6 @@ gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 gem "will_paginate-bootstrap4"
 
-group :development, :test do
-  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  gem "database_cleaner-active_record"
-  gem "factory_bot_rails"
-  gem "rspec-rails", "~> 4.0", ">= 4.0.1"
-  gem "shoulda-matchers"
-end
-
 group :development do
   gem "listen", "~> 3.2"
   gem "rubocop", "~> 0.74.0", require: false
@@ -39,5 +31,11 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
+group :development, :test do
+  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "database_cleaner-active_record"
+  gem "factory_bot_rails"
+  gem "rspec-rails", "~> 4.0", ">= 4.0.1"
+  gem "shoulda-matchers"
+end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

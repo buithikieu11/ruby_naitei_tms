@@ -5,14 +5,15 @@ class Course < ApplicationRecord
   has_many :users, through: :course_users
   has_many :course_subjects, dependent: :destroy
   has_many :subjects, through: :course_subjects
-
-  validates :name, uniqueness: {case_sensitive: false},
+  VALID_NAME_REGEX = /\A[a-zA-Z0-9 ]+\z/
+  validates :name, uniqueness: { case_sensitive: false }, 
                    presence: true,
                    length: {maximum: Settings.model.course.name.max_length},
-                   format: {with: /\A[a-zA-Z0-9 ]+\z/}
+                   format: {with: VALID_NAME_REGEX}
   validates :description, presence: true
   validates :status, presence: true, inclusion: {in: statuses.keys}
   validates :day_start, presence: true
+  validates :day_end, presence: true
   validate  :day_start_is_lower_than_day_end
   scope :sort_by_created_at, ->{order('created_at DESC')}
   scope :search_by_name, ->(name){where "lower(name) LIKE ?", "%#{name}%"}
