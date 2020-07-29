@@ -19,6 +19,10 @@ gem "will_paginate-bootstrap4"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "database_cleaner-active_record"
+  gem "factory_bot_rails"
+  gem "rspec-rails", "~> 4.0", ">= 4.0.1"
+  gem "shoulda-matchers"
 end
 
 group :development do
