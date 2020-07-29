@@ -50,13 +50,15 @@ class Admin::CoursesController < Admin::ApplicationController
   end
 
   def destroy
-    if @course.destroy!=nil then flash.now[:success] = t("controller.admin.course.destroy.delete_success")
-    else flash.now[:warning] = t("controller.admin.course.destroy.delete_fail")
-    end  
-    respond_to do |format|
+    if @course.destroy
+      flash.now[:success] = t("controller.admin.course.destroy.delete_success")
+      respond_to do |format|
       format.json{head :no_content}
       format.js{}
     end
+    else flash.now[:warning] = t("controller.admin.course.destroy.delete_fail")
+         redirect_to admin_courses_path
+   end  
   end
 
   private
