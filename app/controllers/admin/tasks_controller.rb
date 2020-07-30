@@ -17,6 +17,10 @@ class Admin::TasksController < Admin::ApplicationController
     @task = Task.new
   end
 
+  def edit; end
+
+  def update; end
+
   def create
     params = task_params.to_h
     params[:step] = @subject.tasks.count.zero? ? 1 : @subject.tasks.last.step + 1
