@@ -4,7 +4,7 @@ class Admin::TasksController < Admin::ApplicationController
   before_action :get_subject
   before_action :get_task, except: [:index, :new, :create]
   before_action :extract_params, only: [:index]
-  before_action :task_params, only: [:create]
+  before_action :task_params, only: [:create, :update]
 
   def index
     @tasks = @subject.tasks.find_by_name(@search)
@@ -19,7 +19,16 @@ class Admin::TasksController < Admin::ApplicationController
 
   def edit; end
 
-  def update; end
+  def update
+    params = task_params
+    params[:duration] = params[:duration].to_i
+    if @task.update(params)
+      flash[:success] = t("controller.admin.task.update.updated_successfully")
+      redirect_to admin_subject_tasks_path
+    else
+      render "edit"
+    end
+  end
 
   def create
     params = task_params.to_h

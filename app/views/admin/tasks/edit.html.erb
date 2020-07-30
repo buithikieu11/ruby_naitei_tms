@@ -1,0 +1,82 @@
+<% provide :title, t("view.admin.task.task.page_title", subject_name: @subject.name) %>
+<% content_for :head_content do %>
+<% end %>
+<!--begin::Subheader-->
+<div class="subheader py-3 py-lg-8 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <!--begin::Info-->
+    <div class="d-flex align-items-center flex-wrap mr-1">
+      <!--begin::Page Heading-->
+      <div class="d-flex align-items-baseline flex-wrap mr-5">
+        <!--begin::Page Title-->
+        <h2 class="subheader-title text-dark font-weight-bold my-1 mr-3"><%= t("view.admin.subject.index.page_title") %></h2>
+        <!--end::Page Title-->
+        <!--begin::Breadcrumb-->
+        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold my-2 p-0">
+          <li class="breadcrumb-item">
+            <a href="" class="text-muted"><%= t("view.admin.subject.general.subjects") %></a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="" class="text-muted"><%= @subject.name %></a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="" class="text-muted"><%= t("view.admin.task.general.edit_task") %></a>
+          </li>
+        </ul>
+        <!--end::Breadcrumb-->
+      </div>
+      <!--end::Page Heading-->
+    </div>
+    <!--end::Info-->
+  </div>
+</div>
+<!--end::Subheader-->
+
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+  <!--begin::Container-->
+  <div class="container">
+    <%# debugger %>
+    <%= render 'shared/extras/alert' %>
+    <div class="card card-custom">
+      <div class="card-header">
+        <div class="card-title">
+          <span class="card-icon">
+            <i class="flaticon2-favourite text-primary"></i>
+          </span>
+          <h3 class="card-label"><%= t("view.admin.task.general.edit_task") %></h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= form_for [:admin, @subject, @task], class: "form" do |f| %>
+          <div class="card-body">
+            <div class="form-group <%= @task.errors[:name].present? ? "validated" : "" %>">
+              <%= f.label :name %>
+              <%= f.text_field :name, class: "form-control #{@task.errors[:name].present? ? "is-invalid" : ""}", placeholder: "" %>
+              <%= render(partial: 'shared/admin/extras/form-validation-errors', locals: {obj: @task.errors[:name], field_name: :name.capitalize}) if @task.errors[:name].present? %>
+            </div>
+            <div class="form-group <%= @task.errors[:duration].present? ? "validated" : "" %>">
+              <%= f.label :duration %>
+              <%= f.number_field :duration, class: "form-control #{@task.errors[:duration].present? ? "is-invalid" : ""}", step: 1, min: 1 %>
+              <%= render(partial: 'shared/admin/extras/form-validation-errors', locals: {obj: @task.errors[:duration], field_name: :duration.capitalize}) if @task.errors[:duration].present? %>
+            </div>
+            <div class="form-group <%= @task.errors[:description].present? ? "validated" : "" %>">
+              <%= f.label :description %>
+              <%= f.text_area :description, class: "form-control #{@task.errors[:description].present? ? "is-invalid" : ""}", rows: 3 %>
+              <%= render(partial: 'shared/admin/extras/form-validation-errors', locals: {obj: @task.errors[:description], field_name: :description.capitalize}) if @task.errors[:description].present? %>
+            </div>
+          </div>
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            <span class="ml-2">or <%= link_to "Cancel", admin_subject_tasks_path, class: "font-weight-bold ml-2" %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <!--end::Container-->
+</div>
+<!--end::Entry-->
+
+<% content_for :footer_content do %>
+<% end %>
