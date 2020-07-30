@@ -58,6 +58,8 @@ en:
         index:
           no_result: "There is no tasks matches what you're looking for!"
         new:
+        update:
+          updated_successfully: "Task has been updated successfully."
         create:
           created_successfully: "Created new Task for %{subject_name} successfully."
         destroy:
