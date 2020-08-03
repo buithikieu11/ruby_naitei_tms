@@ -6,6 +6,7 @@
           <option value="<%= full_user_url_with_params(:id, status: "started") %>" <%= "selected" if params[:status] == "started" %>>Started</option>
           <option value="<%= full_user_url_with_params(:id, status: "pending") %>" <%= "selected" if params[:status] == "pending" %>>Pending</option>
           <option value="<%= full_user_url_with_params(:id, status: "finished") %>" <%= "selected" if params[:status] == "finished" %>>Finished</option>
+          <option value="<%= full_user_url_with_params(:id, status: "all") %>" <%= "selected" if params[:status] == "all" %>>All</option>
         </select></label>
     </div>
   </div>
@@ -21,16 +22,17 @@
         <!--end::Symbol-->
         <!--begin::Title-->
         <div class="d-flex flex-column ml-4 flex-grow-1 mr-2">
-          <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1"><%= course.name %></a>
+<!--          <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1"><%#= course.name %></a>-->
+          <%= link_to course.name, course_path(course), class: "text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1", method: :get%>
           <div class="d-flex flex-lg-row flex-grow-1 mr-3">
             <p class="mr-2"><%= t("view.user.show.tabs.course_tab.description_span") %></p>
             <p class="text-muted font-weight-bold"><%= course.description %></p>
           </div>
           <div class="d-flex flex-lg-row flex-grow-1 mr-3">
             <p class="mr-2"><%= t("view.user.show.tabs.course_tab.day_start_label") %></p>
-            <p class="text-muted font-weight-bold mr-5"><%= I18n.localize course.day_start, format: t("app.date.formats") %></p>
+            <p class="text-muted font-weight-bold mr-5"><%= I18n.localize course.day_start, format: t("app.dates.format") %></p>
             <p class="mr-2"><%= t("view.user.show.tabs.course_tab.day_end_label") %></p>
-            <p class="text-muted font-weight-bold"><%= I18n.localize course.day_end, format: t("app.date.formats") %></p>
+            <p class="text-muted font-weight-bold"><%= I18n.localize course.day_end, format: t("app.dates.format") %></p>
           </div>
         </div>
         <!--end::Title-->

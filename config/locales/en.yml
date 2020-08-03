@@ -1,7 +1,5 @@
 en:
   app:
-    date:
-      formats: "%H:%M %m/%d/%y"
     dates:
       format: "%H:%M %m/%d/%Y"
     base_title: "Training Management System"
@@ -65,7 +63,10 @@ en:
         destroy:
           deleted: "Deleted task successfully."
           failed: "Failed to delete the task."
-         
+    course:
+      show:
+        invalid_course_message: "Cannot find the course you want"
+        bad_request_message: "Some errors has happened"
   model:
     course:
       invalid_date_message: "Day start is lower than day end"
@@ -108,6 +109,18 @@ en:
             description_span: "Description:"
             filter_label: "Filter by status"
             no_data_message: "Currently no data"
+    course:
+      show:
+        description_label: "Description"
+        day_start_label: "Day start"
+        day_end_label: "Day end"
+        author_label: "Creator"
+        member_label: "Members"
+        joined_course_message: "You have joined this course already"
+        contact_supervisor_message: "Please contact to the supervisor to join in this course"
+        pending_course_message: "Supervisor hasn't started this course yet"
+        finished_course_message: "The course has finished, please wait until the supervisor re-open it"
+        learn_button: "Learn"
     admin:
       user:
         index:
