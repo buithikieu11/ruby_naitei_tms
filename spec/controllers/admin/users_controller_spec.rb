@@ -6,6 +6,13 @@ RSpec.describe Admin::UsersController, type: :controller do
   let(:user_1) { FactoryBot.create(:user) }
   let(:user_2) { FactoryBot.create(:user) }
   let(:admin) { FactoryBot.create(:user, role: User.roles[:supervisor])}
+  let(:invalid_user) {
+    FactoryBot.build(:user,
+      email: Faker::Internet.unique.username,
+      password: "123456",
+      password_confirmation: "",
+    ).as_json
+  }
 
   before(:each) do
     log_in(admin)
@@ -53,12 +60,12 @@ RSpec.describe Admin::UsersController, type: :controller do
     context "with invalid attribute(s)" do
       it "should not create a new user" do
         expect {
-          post :create, params: { user: FactoryBot.attributes_for(:invalid_user) }
+          post :create, params: { user: invalid_user }
         }.to_not change(User, :count)
       end
 
       it "should re-render :new view" do
-        post :create, params: { user: FactoryBot.attributes_for(:invalid_user)}
+        post :create, params: { user: invalid_user }
         expect(response).to render_template :new
       end
     end
