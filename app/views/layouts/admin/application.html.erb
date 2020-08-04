@@ -67,10 +67,10 @@
   <!--end::Page-->
 </div>
 <!--end::Main-->
-<%= render 'shared/admin/extras/offcanvas/quick-notifications' %>
-<%= render 'shared/admin/extras/offcanvas/quick-actions' %>
-<%= render 'shared/admin/extras/offcanvas/quick-panel' %>
-<%= render 'shared/admin/extras/offcanvas/quick-user' %>
+<%= render 'shared/admin/extras/offcanvas/quick-notifications' if logged_in? %>
+<%= render 'shared/admin/extras/offcanvas/quick-actions' if logged_in? %>
+<%= render 'shared/admin/extras/offcanvas/quick-panel' if logged_in? %>
+<%= render 'shared/admin/extras/offcanvas/quick-user' if logged_in? %>
 
 <script>var KTAppSettings = {"breakpoints": {"sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200},
     "colors": {

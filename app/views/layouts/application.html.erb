@@ -17,14 +17,13 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= yield(:head_content) %>
 </head>
-<body id="kt_body" class="page-loading-enabled page-loading quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static page-loading">
+<body id="kt_body" class="page-loading-enabled page-loading quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-enabled page-loading">
   <%#= render 'shared/page-loader' %>
   <!--begin::Main-->
   <%= render 'shared/header-mobile' %>
   <div class="d-flex flex-column flex-root">
     <!--begin::Page-->
     <div class="d-flex flex-row flex-column-fluid page">
-      <%= render 'shared/aside' %>
       <!--begin::Wrapper-->
       <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
         <%= render 'shared/header' %>
@@ -40,10 +39,10 @@
     <!--end::Page-->
   </div>
   <!--end::Main-->
-  <%= render 'shared/extras/offcanvas/quick-notifications' %>
-  <%= render 'shared/extras/offcanvas/quick-actions' %>
-  <%= render 'shared/extras/offcanvas/quick-panel' %>
-  <%= render 'shared/extras/offcanvas/quick-user' %>
+  <%= render 'shared/extras/offcanvas/quick-notifications' if logged_in? %>
+  <%= render 'shared/extras/offcanvas/quick-actions' if logged_in? %>
+  <%= render 'shared/extras/offcanvas/quick-panel' if logged_in? %>
+  <%= render 'shared/extras/offcanvas/quick-user' if logged_in? %>
 
   <script>var KTAppSettings = {"breakpoints": {"sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200},
       "colors": {
