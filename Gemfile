@@ -39,6 +39,7 @@ group :development, :test do
   gem "rails-controller-testing"
   gem "rspec-rails", "~> 4.0", ">= 4.0.1"
   gem "shoulda-matchers"
+  gem "rails-controller-testing"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
