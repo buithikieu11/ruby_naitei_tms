@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   layout "auth"
 
-  before_action :restrict_logged_in_user
+  before_action :restrict_logged_in_user, only: [:create]
 
   def new; end
 

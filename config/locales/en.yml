@@ -136,6 +136,16 @@ en:
         finished_course_message: "The course has finished, please wait until the supervisor re-open it"
         learn_button: "Learn"
     admin:
+      application:
+        home:
+          breadcrumb_item_1: "Administrator Page"
+          breadcrumb_item_2: "Admin"
+          breadcrumb_item_3: "Main Board"
+          home_title: "Home"
+          course_title: "Courses"
+          user_title: "Users"
+          subject_title: "Subjects"
+          task_title: "Tasks"
       user:
         index:
           page_title: "Users"
