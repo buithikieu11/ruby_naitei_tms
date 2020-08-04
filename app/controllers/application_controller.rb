@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
 
-  def home; end
+  def home
+    redirect_to login_url unless logged_in?
+  end
 end

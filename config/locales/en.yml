@@ -3,8 +3,22 @@ en:
     dates:
       format: "%H:%M %m/%d/%Y"
     base_title: "Training Management System"
+    header:
+      login: "Login"
+      logout: "Logout"
+      user_profile: "User Profile"
+      my_profile: "My Profile"
+      my_profile_desc: "Account settings and more"
+      recent_notifications: "Recent Notifications"
+      admin_page: "Administrator Page"
     admin:
       base_title: "Training Management System - Administration"
+      aside:
+        home_page: "Home Page"
+        dashboard: "Dashboard"
+        pages: "Pages"
+        users: "Users"
+        courses: "Courses"
   controller:
     session:
       create:
