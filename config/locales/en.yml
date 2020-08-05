@@ -28,6 +28,9 @@ en:
         create_user_success_message: "Created user successfully"
       show:
         user_not_found: "Can't find the user you want"
+    subject:
+      show:
+        do_not_have_permission: "You do not have permission to access this page."
     admin:
       application:
         access_denied: "You are not permitted to access this page!"
@@ -135,6 +138,27 @@ en:
         pending_course_message: "Supervisor hasn't started this course yet"
         finished_course_message: "The course has finished, please wait until the supervisor re-open it"
         learn_button: "Learn"
+    subject:
+      general:
+        subjects: "Subjects"
+      show:
+        page_title: "Subjects"
+        show_subject: "Show Subject"
+        subject_info: "Subject Info"
+        name: "Name"
+        description: "Description"
+        number_of_tasks: "Number of Tasks"
+        created_at: "Created At"
+        progress: "Progress"
+        progress_desc: "Shows how many percent of the Subject you have completed"
+        generate_report: "Generate Report"
+        task_list: "Task List"
+    task:
+      index:
+        duration: "Duration"
+        step: "Step"
+        hour: "Hour"
+        no_tasks: "There is no tasks to show"
     admin:
       application:
         home:

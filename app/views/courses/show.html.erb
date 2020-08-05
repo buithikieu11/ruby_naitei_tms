@@ -252,7 +252,7 @@
                 <span><%= subject.description %></span>
               </div>
               <div class="dropdown dropdown-inline ml-2">
-                <a class="btn btn-primary" disabled="<%= %>"><%= t("view.course.show.learn_button") %></a>
+                <a href="<%= subject_path(subject) %>" class="btn btn-primary" disabled="<%= %>"><%= t("view.course.show.learn_button") %></a>
               </div>
               <!--end::Text-->
             </div>
