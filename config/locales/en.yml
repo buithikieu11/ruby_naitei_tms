@@ -133,6 +133,7 @@ en:
         day_end_label: "Day end"
         author_label: "Creator"
         member_label: "Members"
+        filter_label: "Filter By Role"
         joined_course_message: "You have joined this course already"
         contact_supervisor_message: "Please contact to the supervisor to join in this course"
         pending_course_message: "Supervisor hasn't started this course yet"
