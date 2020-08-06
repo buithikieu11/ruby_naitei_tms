@@ -1,5 +1,10 @@
 app:
 controller:
+  task:
+    default_page: 1
+    default_per_page: 20
+    default_sort_by_column: :id
+    default_sort_by_order: :asc
   admin:
     subject:
       default_per_page: 10

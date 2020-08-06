@@ -31,6 +31,12 @@ en:
     subject:
       show:
         do_not_have_permission: "You do not have permission to access this page."
+    task:
+      general:
+        not_found: "There is no task matches what you're looking for!"
+      index:
+        in_progress: "In Progress"
+        finished: "Finished"
     admin:
       application:
         access_denied: "You are not permitted to access this page!"
@@ -154,7 +160,11 @@ en:
         generate_report: "Generate Report"
         task_list: "Task List"
     task:
+      general:
+        tasks: "Tasks"
+        index: "Index"
       index:
+        page_title: "Tasks"
         duration: "Duration"
         step: "Step"
         hour: "Hour"
