@@ -271,49 +271,21 @@
         <!--begin::Header-->
         <div class="card-header border-0">
           <h3 class="card-title font-weight-bolder text-dark"><%= t("view.course.show.member_label") %></h3>
-          <div class="card-toolbar">
+          <div class="card-toolbar" id="kt_datatable_length">
             <div class="dropdown dropdown-inline show">
-              <a href="#" class="btn btn-light-primary btn-sm font-weight-bolder dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Sort</a>
-              <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right show" x-placement="top-end" style="position: absolute; transform: translate3d(-97px, -241px, 0px); top: 0px; left: 0px; will-change: transform;">
-                <!--begin::Navigation-->
-                <ul class="navi navi-hover">
-                  <li class="navi-header pb-1">
-                    <span class="text-primary text-uppercase font-weight-bold font-size-sm">Option</span>
-                  </li>
-                  <li class="navi-item">
-                    <a href="#" class="navi-link">
-                      <span class="navi-icon">
-                        <i class="flaticon2-shopping-cart-1"></i>
-                      </span>
-                      <span class="navi-text">Supervisor</span>
-                    </a>
-                  </li>
-                  <li class="navi-item">
-                    <a href="#" class="navi-link">
-                      <span class="navi-icon">
-                        <i class="flaticon2-shopping-cart-1"></i>
-                      </span>
-                      <span class="navi-text">Trainee</span>
-                    </a>
-                  </li>
-                  <li class="navi-item">
-                    <a href="#" class="navi-link">
-                      <span class="navi-icon">
-                        <i class="flaticon2-shopping-cart-1"></i>
-                      </span>
-                      <span class="navi-text">Default</span>
-                    </a>
-                  </li>
-                </ul>
-                <!--end::Navigation-->
-              </div>
+              <label><%= t("view.course.show.filter_label") %>
+                <select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm" onchange="window.location.href=this.value">
+                  <option class="navi-item" value="<%= full_course_url_with_params(:id, :page, role_filter: "default") %>" <%= "selected" if params[:role_filter] == "default" %>><span class="navi-text">Default</span></option>
+                  <option class="navi-item" value="<%= full_course_url_with_params(:id, :page, role_filter: "supervisor") %>" <%= "selected" if params[:role_filter] == "supervisor" %>><span class="navi-text">Supervisor</span></option>
+                  <option class="navi-item" value="<%= full_course_url_with_params(:id, :page, role_filter: "trainee") %>" <%= "selected" if params[:role_filter] == "trainee" %>><span class="navi-text">Trainee</span></option>
+                </select></label>
             </div>
           </div>
         </div>
         <!--end::Header-->
         <!--begin::Body-->
         <div class="card-body pt-2">
-          <div class="scroll ps ps--active-y" data-scroll="true" data-height="430" style="height: 430px; overflow: hidden">
+          <div class="scroll ps ps--active-y" data-scroll="true" data-height="430" style="height: 430px; overflow: hidden" >
             <!--begin::Item-->
             <% @students.each do |student| %>
               <div class="d-flex align-items-center mb-10">

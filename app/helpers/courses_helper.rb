@@ -12,4 +12,8 @@ module CoursesHelper
       ""
     end
   end
+
+  def full_course_url_with_params(*current_params, additional_param)
+    course_url(request.params.slice(*current_params).merge(additional_param))
+  end
 end
