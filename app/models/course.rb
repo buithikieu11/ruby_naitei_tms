@@ -5,6 +5,7 @@ class Course < ApplicationRecord
   has_many :users, through: :course_users
   has_many :course_subjects, dependent: :destroy
   has_many :subjects, through: :course_subjects
+  belongs_to :creator, class_name: "User", foreign_key: "creator_id"
   VALID_NAME_REGEX = /\A[a-zA-Z0-9 ]+\z/
   validates :name, uniqueness: { case_sensitive: false }, 
                    presence: true,

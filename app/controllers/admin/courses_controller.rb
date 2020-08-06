@@ -30,7 +30,9 @@ class Admin::CoursesController < Admin::ApplicationController
       puts t("controller.admin.course.create.transaction_fail")
     end
   end
-
+  
+  def show; end
+  
   def index
     @course_ids = current_user.course_users.supervisor.pluck :course_id
     @courses = Course.by_ids(@course_ids).sort_by_created_at
