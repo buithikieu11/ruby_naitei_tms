@@ -1,0 +1,22 @@
+<%= form_for [:admin,@course] do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+  <%= f.label :description %>
+  <%= f.text_field :description, class: "form-control" %>
+    <div class="form-group">
+    <%= f.label :day_start %>
+    <%= f.date_field :day_start, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+    <%= f.label :day_end %>
+    <%= f.date_field :day_end, class: 'form-control' %>
+    </div>  
+ <%= f.label :status %><br>
+ <%= f.select :status, statuses_generator,
+      class: "btn btn-primary dropdown-toggle" %> 
+  <br>    
+  <br>
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+    <span class="ml-2">or <%= link_to t("view.admin.course.new.cancel"), admin_courses_path, class: "font-weight-bold ml-2" %></span>
+<% end %>

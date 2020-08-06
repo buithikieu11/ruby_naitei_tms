@@ -73,6 +73,11 @@ en:
             create_success: "Created course successfully"
             create_fail: "Create course failed"   
             transaction_fail: "Oops. We tried to do an invalid operation!"
+          update:
+            start_before_finish: "Please start before finish"  
+            update_success: "Updated successfully"
+            update_fail: "Update failed"
+            user_has_started: "Can't change status,User has started course!!!"  
       task:
         general:
           not_found: "There is no tasks matches what you're looking for!"

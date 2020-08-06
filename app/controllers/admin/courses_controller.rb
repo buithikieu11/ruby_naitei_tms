@@ -2,7 +2,7 @@ class Admin::CoursesController < Admin::ApplicationController
   include Admin::CoursesHelper
   before_action :set_course, except: [:index, :create, :new]
   before_action :extract_params, only: [:index]
-  before_action :check_permission, only: [:destroy]
+  before_action :check_permission, only: [:destroy, :edit, :update]
   before_action :load_subjects, only: [:new, :create]
   def new
     @course = Course.new
@@ -30,8 +30,10 @@ class Admin::CoursesController < Admin::ApplicationController
       puts t("controller.admin.course.create.transaction_fail")
     end
   end
-  
+ 
   def show; end
+
+  def edit; end
   
   def index
     @course_ids = current_user.course_users.supervisor.pluck :course_id
@@ -49,6 +51,32 @@ class Admin::CoursesController < Admin::ApplicationController
       @courses
     end
     @courses = @courses.paginate(page: @page, per_page: @per_page)
+  end
+  
+  def update
+    #course is pending
+    if @course.pending?
+      if edit_params[:status] == "finished"
+        flash[:danger] = t("controller.admin.course.update.start_before_finish")
+        update_course(except_status_params)
+      else 
+        update_course(edit_params)
+      end 
+    #course is started
+    elsif @course.started?
+      if edit_params[:status] == "pending"
+        update_course(edit_params) unless check_course_user_started
+      else 
+        update_course(edit_params)
+      end  
+    #course is finished  
+    else 
+      if edit_params[:status] == "finished"
+        update_course(edit_params)
+      else
+        update_course(edit_params) unless check_course_user_started
+      end  
+    end 
   end
 
   def destroy
@@ -92,4 +120,30 @@ class Admin::CoursesController < Admin::ApplicationController
   def load_subjects
     @subjects = Subject.sort_by_name
   end
+
+  def edit_params
+    params.require(:course).permit(:name, :description, :status, :day_start, :day_end )
+  end
+  
+  def except_status_params
+    params.require(:course).permit(:name, :description, :day_start, :day_end )
+  end  
+
+  def check_course_user_started
+      course_user = @course.course_users.started
+      return unless course_user.any?
+      flash[:danger] = t("controller.admin.course.update.user_has_started")
+      update_course(except_status_params)
+  end  
+
+  def update_course new_params
+    if @course.update new_params
+      flash[:success] = t("controller.admin.course.update.update_success")
+      redirect_to admin_course_path
+    else 
+      flash[:danger] = t("controller.admin.course.update.update_fail")
+      redirect_to edit_admin_course_path
+    end  
+  end  
+  
 end

@@ -2,7 +2,6 @@
 <link href="<%= root_url %>assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.6" rel="stylesheet" type="text/css" />
 <% end %>
 <div class="container">
- <%= render 'shared/extras/alert' %>
    <div class="row">
       <div class="col-lg-6 col-xxl-4 order-1 order-xxl-1">
          <div class="card card-custom">
@@ -147,7 +146,7 @@
                   </div>
                   <!--end::Text-->
                </div>    
-               
+             <%= link_to t("view.admin.course.new.edit"), edit_admin_course_path, class: "font-weight-bold ml-2" %> 
              <span class="ml-2">or <%= link_to t("view.admin.course.new.cancel"), admin_courses_path, class: "font-weight-bold ml-2" %></span> 
             </div>
             
@@ -156,3 +155,11 @@
       </div>
      </div>
     </div>  
+    </div>  
+   <% content_for :footer_content do %>
+  <% flash.each do |type,msg| %>
+    <script>
+      pushNotification("<%= msg %>", "danger")
+    </script>
+  <% end %>
+<% end %>  

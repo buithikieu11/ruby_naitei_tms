@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :tasks, except: [:show]
     end
     resources :users
-    resources :courses, except: [:edit, :update]
+    resources :courses
   end
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"

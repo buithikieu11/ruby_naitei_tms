@@ -6,11 +6,16 @@ module Admin::CoursesHelper
   
   def check_owner(course)
     current_user == course.creator
-   end
+  end
   
   def get_creator(course)
     creator = course.creator
     creator ? creator.username : "None"
-   end
+  end
+  
+  def statuses_generator
+    Course.statuses.keys
+  end
+   
    
 end

@@ -1,0 +1,13 @@
+<%= provide :title, "Edit Course"%>
+<% provide(:button_text, "Submit") %>
+<h1><%= "Edit Course"%></h1>
+<div class="col-md-6" style="margin-left:100px;">
+  <%= render "course_form" %>
+</div>
+  <% content_for :footer_content do %>
+  <% flash.each do |type,msg| %>
+    <script>
+      pushNotification("<%= msg %>", "danger")
+    </script>
+  <% end %>
+<% end %>  
