@@ -1,0 +1,114 @@
+<% provide :title, t("view.task.index.page_title") %>
+<% content_for :head_content do %>
+  <link href="<%= root_url %>assets/plugins/custom/datatables/datatables.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+<% end %>
+<!--begin::Subheader-->
+<div class="subheader py-3 py-lg-8 subheader-transparent" id="kt_subheader">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+    <!--begin::Info-->
+    <div class="d-flex align-items-center flex-wrap mr-1">
+      <!--begin::Page Heading-->
+      <div class="d-flex align-items-baseline flex-wrap mr-5">
+        <!--begin::Page Title-->
+        <h2 class="subheader-title text-dark font-weight-bold my-1 mr-3"><%= t("view.task.general.tasks") %></h2>
+        <!--end::Page Title-->
+        <!--begin::Breadcrumb-->
+        <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold my-2 p-0">
+          <li class="breadcrumb-item">
+            <a href="" class="text-muted"><%= t("view.task.general.index") %></a>
+          </li>
+        </ul>
+        <!--end::Breadcrumb-->
+      </div>
+      <!--end::Page Heading-->
+    </div>
+    <!--end::Info-->
+  </div>
+</div>
+<!--end::Subheader-->
+<div class="d-flex flex-column-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-4">
+          <select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm" onChange="window.location.href=this.value">
+            <option value="<%= full_task_url_with_params(:search, :page, :order_by, :order, per_page: 10) %>" <%= "selected" if params[:per_page] == "10" %>>10</option>
+            <option value="<%= full_task_url_with_params(:search, :page, :order_by, :order, per_page: 25) %>" <%= "selected" if params[:per_page] == "25" %>>25</option>
+            <option value="<%= full_task_url_with_params(:search, :page, :order_by, :order, per_page: 50) %>" <%= "selected" if params[:per_page] == "50" %>>50</option>
+            <option value="<%= full_task_url_with_params(:search, :page, :order_by, :order, per_page: 100) %>" <%= "selected" if params[:per_page] == "100" %>>100</option>
+          </select> entries</label>
+      </div>
+      <div class="col-12">
+        <div class="row row d-flex justify-content-between">
+          <div class="col-sm-12 col-md-4">
+            <label><%= t("view.admin.task.general.order_by") %>
+              <select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm" onChange="window.location.href=this.value">
+                <% Task.attribute_names.each do |name| %>
+                  <option value="<%= full_task_url_with_params(:search, :page, :order, :per_page, order_by: name) %>" <%= "selected" if params[:order_by].present? && params[:order_by].downcase == name %>><%= name.capitalize %></option>
+                <% end %>
+              </select>
+              <select name="kt_datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm" onChange="window.location.href=this.value">
+                <option value="<%= full_task_url_with_params(:search, :page, :order_by, :per_page, order: "asc") %>" <%= "selected" if params[:order] == "asc" %>><%= t("view.admin.task.general.asc") %></option>
+                <option value="<%= full_task_url_with_params(:search, :page, :order_by, :per_page, order: "desc") %>" <%= "selected" if params[:order] == "desc" %>><%= t("view.admin.task.general.desc") %></option>
+              </select>
+            </label>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <%= form_tag subject_tasks_path, method: :get do %>
+              <%= hidden_field_tag 'per_page', params[:per_page] %>
+              <%= hidden_field_tag 'order', params[:order] %>
+              <%= hidden_field_tag 'order_by', params[:order_by] %>
+              <div id="kt_datatable_filter" class="dataTables_filter">
+                <label for="search"><%= t("view.admin.subject.index.search") %>:</label>
+                <input type="text" id="search" name="search" value="<%= params[:search] %>" class="form-control form-control-sm" placeholder="" aria-controls="kt_datatable">
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <!--begin::Advance Table Widget 4-->
+        <div class="card card-custom card-stretch gutter-b">
+          <!--begin::Header-->
+          <div class="card-header border-0 py-5">
+            <h3 class="card-title align-items-start flex-column">
+              <span class="card-label font-weight-bolder text-dark"><%= t("view.subject.show.task_list") %></span>
+            </h3>
+          </div>
+          <!--end::Header-->
+
+          <!--begin::Body-->
+          <div class="card-body pt-0 pb-3">
+            <div class="tab-content">
+              <!--begin::Table-->
+              <div class="table-responsive">
+                <table class="table table-head-custom table-head-bg table-borderless table-vertical-center">
+                  <thead>
+                  <tr class="text-left text-uppercase">
+                    <th style="min-width: 250px" class="pl-7"><span class="text-dark-75"><%= t("view.subject.show.name") %></span></th>
+                    <th style="min-width: 100px"><%= t("view.subject.show.duration") %></th>
+                    <th style="min-width: 100px"><%= t("view.subject.show.step") %></th>
+                    <th style="min-width: 100px"><%= t("view.subject.show.description") %></th>
+                    <th style="min-width: 130px"><%= t("view.subject.show.created_at") %></th>
+                    <th style="min-width: 80px"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <%= render(partial: "task", collection: @tasks) || t("view.subject.show.no_tasks") %>
+                  </tbody>
+                </table>
+                <%= will_paginate @tasks %>
+              </div>
+              <!--end::Table-->
+            </div>
+          </div>
+          <!--end::Body-->
+        </div>
+        <!--end::Advance Table Widget 4-->
+      </div>
+    </div>
+  </div>
+</div>
+<%= content_for :footer_content do %>
+<% end %>
